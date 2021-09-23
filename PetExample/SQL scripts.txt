@@ -1,0 +1,4 @@
+CREATE USER 'pineaple'@'localhost' IDENTIFIED BY 'password';
+GRANT INSERT, SELECT, DELETE, UPDATE ON test1.* TO 'pinepple'@'localhost';
+
+#test1 is the desired database
