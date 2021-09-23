@@ -14,6 +14,7 @@ class User {
     }
 
     function isValid() {
+        require_once('mysqli_connect.php');
         
     }
 }

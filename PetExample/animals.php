@@ -19,7 +19,7 @@ include "header.html";
         //mysqli_close($dbc);
     } else {
         echo 'Error Occurred';
-        echo mysqli_error();
+        echo mysqli_error($dbc);
         mysqli_stmt_close($stmt);
         //mysqli_close($dbc);
     }
