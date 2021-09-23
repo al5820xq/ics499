@@ -1,0 +1,18 @@
+.navList {
+    list-style-type: none;
+    margin: 0;
+    margin-bottom: 4%;
+    padding: left 10px;
+    text-align: right;
+}
+.navBar {
+    text-align: center;
+    font-family: sans-serif;
+    display: inline;
+    margin: 0;
+}
+.barBar {
+    text-align: center;
+    font-family: sans-serif;
+    display: inline;
+}
