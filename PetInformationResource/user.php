@@ -22,6 +22,10 @@ class User {
         return $this->username;
     }
 
+    function getID() {
+        return $this->userID;
+    }
+
     function isValid() {
         require_once('mysqli_connect.php');
         $query = "SElECT user_id, firstname, lastname, username, password, email, 

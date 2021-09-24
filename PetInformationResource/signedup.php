@@ -2,7 +2,6 @@
 include "navbar.html";
 require_once('mysqli_connect.php');
 
-require_once('mysqli_connect.php');
 $username = $_POST["username"];
 $fname = $_POST["fname"];
 $lname = $_POST["lname"];
