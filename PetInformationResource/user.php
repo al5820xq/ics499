@@ -33,12 +33,41 @@ class User {
             $row = mysqli_fetch_array($response);
             $this->userID = $row['user_id'];
             $this->firstName = $row['firstname'];
-
+            $this->lastName = $row['lastname'];
+            $this->email = $row['email'];
+            $this->phone = $row['phone'];
+            $this->address = $row['address'];
+            $this->zipcode = $row['zipcode'];
+            $this->city = $row['city'];
+            $this->state = $row['state'];
         } else {
             echo "couldnt issue database query";
             echo mysqli_error($dbc);
         }
         mysqli_close($dbc);
+    }
+
+    function toString() {
+        echo '<table align="center" cellspacing="5" cellpadding="8">';
+        echo '<tr><td align="left"><b>Id: </b></td>';
+        echo '<td align="left">'.$this->userID.'</td></tr>';
+        echo '<tr><td align="left"><b>First Name: </b></td>';
+        echo '<td align="left">'.$this->firstName.'</td></tr>';
+        echo '<tr><td align="left"><b>First Name: </b></td>';
+        echo '<td align="left">'.$this->lastName.'</td></tr>';
+        echo '<tr><td align="left"><b>First Name: </b></td>';
+        echo '<td align="left">'.$this->email.'</td></tr>';
+        echo '<tr><td align="left"><b>First Name: </b></td>';
+        echo '<td align="left">'.$this->phone.'</td></tr>';
+        echo '<tr><td align="left"><b>First Name: </b></td>';
+        echo '<td align="left">'.$this->address.'</td></tr>';
+        echo '<tr><td align="left"><b>First Name: </b></td>';
+        echo '<td align="left">'.$this->zipcode.'</td></tr>';
+        echo '<tr><td align="left"><b>First Name: </b></td>';
+        echo '<td align="left">'.$this->city.'</td></tr>';
+        echo '<tr><td align="left"><b>First Name: </b></td>';
+        echo '<td align="left">'.$this->state.'</td></tr>';
+        echo '</table>';
     }
 }
 
