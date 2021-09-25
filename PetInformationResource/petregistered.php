@@ -7,7 +7,7 @@ require_once('mysqli_connect.php');
 session_start();
 if(isset($_SESSION['user']) && $_SESSION['user']) {
     $user = unserialize($_SESSION['user']);
-    header('petregistered.php');
+    header('profile.php');
 
     $petname = $_POST["petname"];
     $animal = $_POST["animal"];
@@ -31,6 +31,7 @@ if($affected_rows == 1){
     mysqli_stmt_close($stmt);
         //mysqli_close($dbc);
 }
-
+mysqli_close($dbc);
 }
 ?>
+<h3><a href="profile.php"><b>Back To Profile</b></a></h3>

@@ -27,6 +27,7 @@ class User {
     }
 
     function isValid() {
+        $output = false;
         require_once('mysqli_connect.php');
         $query = "SElECT user_id, firstname, lastname, username, password, email, 
         phone, address, zipcode, city, state FROM user WHERE username='$this->username' AND password='$this->password'";
@@ -44,11 +45,14 @@ class User {
             $this->zipcode = $row['zipcode'];
             $this->city = $row['city'];
             $this->state = $row['state'];
+            $output = true;
         } else {
             echo "couldnt issue database query";
             echo mysqli_error($dbc);
+            $output = false;
         }
         mysqli_close($dbc);
+        return $output;
     }
 
     function toString() {
