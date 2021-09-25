@@ -52,7 +52,7 @@ $query = "SElECT pet_id, name, animal, color, chip_id FROM pets WHERE user_id=$u
 
         echo '</table>';
     } else {
-        echo "coul issue database query";
+        echo "couldnt issue database query";
         echo mysqli_error($dbc);
     }
     mysqli_close($dbc); 

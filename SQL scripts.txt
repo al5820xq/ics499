@@ -25,5 +25,11 @@ CREATE TABLE `test1`.`pets` (
   `animal` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`pet_id`));
 
+CREATE TABLE `test1`.`messages` (
+  `message_id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NULL,
+  `pet_id` INT NULL,
+  `message` VARCHAR(250) NULL,
+  PRIMARY KEY (`message_id`));
 
 #test1 is the desired database
