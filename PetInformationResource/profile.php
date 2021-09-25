@@ -22,6 +22,7 @@ $user->toString();
 $serializedUser = serialize($user);
 
 $_SESSION['user'] = $serializedUser;
+header('inbox.php');
 header('petregister.php');
 $userID = $user->getID();
 require_once('mysqli_connect.php');
@@ -61,4 +62,5 @@ $query = "SElECT pet_id, name, animal, color, chip_id FROM pets WHERE user_id=$u
 <br>
 <hr>
 <h3><a href="petregister.php"><b>Register Pet</b></a></h3>
+<h3><a href="inbox.php"><b>See Messages</b></a></h3>
 
