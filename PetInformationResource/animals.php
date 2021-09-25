@@ -67,8 +67,11 @@ require_once('mysqli_connect.php');
         }
         mysqli_close($dbc);
     if($output) {
+        include 'googlemaplink.php';
+        $linkAddress = addressLink($address, $city, $zipcode, $state);
         echo '<p>Hello, my name is ' . ucfirst(strtolower($name)) . ". I am a " . strtolower($color) . " " . strtolower($animal)
-         . ". I live at $address $city $state $zipcode. Please bring me home. </p>";
+         . '. I live at <a href="' . $linkAddress . '">' . $address . ' ' . $city . ' ' . $state . ' ' . $zipcode .
+         '</a>. Please bring me home. </p>';
         echo '
         <form action="sent.php" class="messageForm" method="post">
         <h5>Send message to owner? </h5>

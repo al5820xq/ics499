@@ -1,16 +1,20 @@
 <?php
 include "navbar.html";
 include "user.php";
+require_once('mysqli_connect.php');
+
 session_start();
 
-if(isset($_SESSION['user']) && $_SESSION['user']) {
-    $user = unserialize($_SESSION['user']);
-} else {
+//if(isset($_SESSION['user']) && $_SESSION['user']) {
+if(isset($_POST['username']) && $_POST['password']) {
+
     $currentUser = $_POST['username'];
     $currentPassword = $_POST['password'];
 
     $user = new User($currentUser, $currentPassword);
     $user->isValid();
+} else {
+    $user = unserialize($_SESSION['user']);
 }
 ?>
 
@@ -18,19 +22,19 @@ if(isset($_SESSION['user']) && $_SESSION['user']) {
 
 <?php
 $user->toString();
-
+//require('mysqli_connect.php');
 $serializedUser = serialize($user);
 
 $_SESSION['user'] = $serializedUser;
 header('inbox.php');
 header('petregister.php');
 $userID = $user->getID();
-require_once('mysqli_connect.php');
+
 $query = "SElECT pet_id, name, animal, color, chip_id FROM pets WHERE user_id=$userID";
 
     $response = @mysqli_query($dbc, $query);
 
-    if($response) {
+    if($response && !is_null($response)) {
         echo '<table align="left"
         cellspacing="5" cellpadding="8">
         
