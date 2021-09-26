@@ -42,16 +42,18 @@ $query = "SElECT pet_id, name, animal, color, chip_id FROM pets WHERE user_id=$u
         <td align="left"><b>name</b></td>
         <td align="left"><b>animal</b></td>
         <td align="left"><b>color</b></td>
-        <td align="left"><b>Chip ID</b></td></tr>';
+        <td align="left"><b>Chip ID</b></td>
+        <td align="left"><b>QR Code</b></td></tr>';
 
         while($row = mysqli_fetch_array($response)){
+            $petID = $row['pet_id'];
             echo '<tr><td align="left">' . 
-            $row['pet_id'] . '</td><td align="left">' .  
+            $petID . '</td><td align="left">' .  
             $row['name'] . '</td><td align="left">' .  
             $row['animal'] . '</td><td align="left">' .  
             $row['color'] . '</td><td align="left">' . 
-            $row['chip_id'] . '</td><td align="left">';
-
+            $row['chip_id'] . '</td><td align="left">' . 
+            '<img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=http://localhost/ics499/PetInformationResource/animals.php?animal_id='.$petID.'%2F&choe=UTF-8"></td>';
             echo '</tr>';
         }
 

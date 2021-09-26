@@ -14,5 +14,4 @@ function addressLink($streetAddress, $city, $zip, $state) {
     $output = $output . $streetAddress . ',+' . $city . ',+' . $state . '+' . $zip . '/';
     return $output;
 }
-echo addressLink('2093 123rd Ln NW','Coon Rapids','MN','55448');
 ?>
