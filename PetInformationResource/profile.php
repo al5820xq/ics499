@@ -26,18 +26,16 @@ $user->toString();
 $serializedUser = serialize($user);
 
 $_SESSION['user'] = $serializedUser;
-header('inbox.php');
-header('petregister.php');
+// header('inbox.php');
+// header('petregister.php');
 $userID = $user->getID();
 
+//Pet table builder. Looks for pets that have user id.
 $query = "SElECT pet_id, name, animal, color, chip_id FROM pets WHERE user_id=$userID";
-
     $response = @mysqli_query($dbc, $query);
-
     if($response && !is_null($response)) {
-        echo '<table align="left"
+        echo '<div><table align="left"
         cellspacing="5" cellpadding="8">
-        
         <tr><td align="left"><b>Id</b></td>
         <td align="left"><b>name</b></td>
         <td align="left"><b>animal</b></td>
@@ -56,12 +54,12 @@ $query = "SElECT pet_id, name, animal, color, chip_id FROM pets WHERE user_id=$u
             '<img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=http://localhost/ics499/PetInformationResource/animals.php?animal_id='.$petID.'%2F&choe=UTF-8"></td>';
             echo '</tr>';
         }
-
-        echo '</table>';
+        echo '</table></div>';
     } else {
         echo "couldnt issue database query";
         echo mysqli_error($dbc);
     }
+
     mysqli_close($dbc); 
 
 ?>
@@ -69,4 +67,5 @@ $query = "SElECT pet_id, name, animal, color, chip_id FROM pets WHERE user_id=$u
 <hr>
 <h3><a href="petregister.php"><b>Register Pet</b></a></h3>
 <h3><a href="inbox.php"><b>See Messages</b></a></h3>
+<h3><a href="logout.php"><b>Log Out</b></a></h3>
 

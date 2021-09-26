@@ -5,7 +5,7 @@ include "user.php";
 session_start();
 if(isset($_SESSION['user']) && $_SESSION['user']) {
     $user = unserialize($_SESSION['user']);
-    header('petregistered.php');
+    //header('petregistered.php');
     echo '
     <form action="petregistered.php" method="post">
     <h5>Pet Name: </h5><input type="text" name="petname">

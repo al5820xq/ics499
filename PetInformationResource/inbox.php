@@ -2,7 +2,7 @@
 include "navbar.html";
 include "user.php";
 session_start();
-header('profile.php');
+//header('profile.php');
 
 if(isset($_SESSION['user']) && $_SESSION['user']) {
     $user = unserialize($_SESSION['user']);
