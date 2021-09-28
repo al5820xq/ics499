@@ -1,27 +1,10 @@
 <head>
         <link rel="stylesheet" href="CSSStyles\style.css">
 </head>
-<style>
-    .messageBox {
-        width: 80%;
-        height: 150px;
-        padding: 12px 20px;
-        box-sizing: border-box;
-        border: 2px solid #ccc;
-        border-radius: 8px;
-        background-color: #f8f8f8;
-        font-size: 16px;
-        resize: none;
-    }
-    .messageForm {
-        width: 80%;
-        height: 150px;
-        padding: 12px 20px;
-        text-align: center;
-    }
-</style>
 <?php
 include "navbar.html";
+include "CSSStyles/style.php";
+
 $animalID = $_GET['animal_id'];
 require_once('mysqli_connect.php');
         $query = "SElECT user_id, name, color, animal FROM pets WHERE pet_id='$animalID'";
@@ -77,7 +60,7 @@ require_once('mysqli_connect.php');
         <h5>Send message to owner? </h5>
         <textarea class="messageBox" name="message">Dear owner, </textarea>
         <br>
-        <input type="submit" value="Send">
+        <input type="submit" value="Send" class="submitButton">
         </form>
         ';
     }
