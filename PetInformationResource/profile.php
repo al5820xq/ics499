@@ -1,6 +1,7 @@
 <?php
 include "navbar.html";
 include "user.php";
+include "CSSStyles/style.php";
 require_once('mysqli_connect.php');
 
 session_start();
@@ -12,15 +13,17 @@ if(isset($_POST['username']) && $_POST['password']) {
     $currentPassword = $_POST['password'];
 
     $user = new User($currentUser, $currentPassword);
-    $user->isValid();
+    $signedIn = $user->isValid();
 } else {
     $user = unserialize($_SESSION['user']);
+    $signedIn = $user->verify();
 }
 ?>
 
 <script>document.write("Today is " + Date());</script>
 
 <?php
+if ($signedIn) {
 $user->toString();
 //require('mysqli_connect.php');
 $serializedUser = serialize($user);
@@ -60,12 +63,24 @@ $query = "SElECT pet_id, name, animal, color, chip_id FROM pets WHERE user_id=$u
         echo mysqli_error($dbc);
     }
 
+    echo '
+    <br>
+    <hr>
+    <h3><a href="petregister.php"><b>Register Pet</b></a></h3>
+    <h3><a href="inbox.php"><b>See Messages</b></a></h3>
+    <h3><a href="logout.php"><b>Log Out</b></a></h3>
+    ';
+} else {
+    echo '<form action="profile.php" method="post" class="messageForm">
+    <h5 class="inputLabel">Invalid Username or Password</h5>
+    <h5 class="inputLabel">User Name: </h5><input type="text" class="inputBox" name="username" >
+    <h5 class="inputLabel">Password: </h5><input type="password" class="inputBox" name="password"> <br>
+    <input type="submit" class="submitButton">
+    </form>';
+}
+
     mysqli_close($dbc); 
 
 ?>
-<br>
-<hr>
-<h3><a href="petregister.php"><b>Register Pet</b></a></h3>
-<h3><a href="inbox.php"><b>See Messages</b></a></h3>
-<h3><a href="logout.php"><b>Log Out</b></a></h3>
+
 

@@ -37,16 +37,45 @@ class User {
 
         if($response) {
             $row = mysqli_fetch_array($response);
-            $this->userID = $row['user_id'];
-            $this->firstName = $row['firstname'];
-            $this->lastName = $row['lastname'];
-            $this->email = $row['email'];
-            $this->phone = $row['phone'];
-            $this->address = $row['address'];
-            $this->zipcode = $row['zipcode'];
-            $this->city = $row['city'];
-            $this->state = $row['state'];
-            $output = true;
+            $this->userID = @$row['user_id'];
+            $this->firstName = @$row['firstname'];
+            $this->lastName = @$row['lastname'];
+            $this->email = @$row['email'];
+            $this->phone = @$row['phone'];
+            $this->address = @$row['address'];
+            $this->zipcode = @$row['zipcode'];
+            $this->city = @$row['city'];
+            $this->state = @$row['state'];
+            if (!is_null($this->userID)) {
+                $output = true;
+            } else {
+                $output = false;
+            }
+        } else {
+            echo "couldnt issue database query";
+            echo mysqli_error($dbc);
+            $output = false;
+        }
+        //mysqli_close($dbc);
+        return $output;
+    }
+
+    function verify() {
+        $output = false;
+        //require_once('mysqli_connect.php');
+        @require('mysqli_connect.php');
+        $query = "SElECT user_id FROM user WHERE username='$this->username' AND password='$this->password'";
+
+        $response = @mysqli_query($dbc, $query);
+
+        if($response) {
+            $row = mysqli_fetch_array($response);
+            $databaseID = $row['user_id'];
+            if ($this->userID == $databaseID && !is_null($databaseID)) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
             echo "couldnt issue database query";
             echo mysqli_error($dbc);
