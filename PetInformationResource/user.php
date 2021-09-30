@@ -26,7 +26,7 @@ class User {
         return $this->userID;
     }
 
-    function isValid() {
+    function initialize() {
         $output = false;
         //require_once('mysqli_connect.php');
         @require('mysqli_connect.php');

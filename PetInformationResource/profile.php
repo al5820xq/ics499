@@ -13,7 +13,7 @@ if(isset($_POST['username']) && $_POST['password']) {
     $currentPassword = $_POST['password'];
 
     $user = new User($currentUser, $currentPassword);
-    $signedIn = $user->isValid();
+    $signedIn = $user->initialize();
 } else {
     $user = unserialize($_SESSION['user']);
     $signedIn = $user->verify();
