@@ -13,6 +13,22 @@ class Address {
         $this->state = $state;
     }
 
+    function getStreetAddress() {
+        return $this->streetAddress;
+    }
+
+    function getZipcode() {
+        return $this->zipcode;
+    }
+
+    function getCity() {
+        return $this->city;
+    }
+
+    function getState() {
+        return $this->state;
+    }
+
     function getLink() {
         $output = 'https://www.google.com/maps/place/';
         for($index = 0; $index < strlen($this->streetAddress); $index++) {

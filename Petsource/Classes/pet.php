@@ -1,8 +1,6 @@
 <?php
 
 class Pet {
-    public static $numOfAnimal = 0;
-    private $petNum;
     private $animal;
     private $name;
     private $color;
@@ -10,26 +8,27 @@ class Pet {
     private $userID;
     private $chipID;
     private $media;
-    private $weight;
-    private $birthDate;
-    private $gender;
-    private $breed;
 
-    function __construct($animal, $name, $color) {
+    function __construct($userID, $petID, $name, $chipID, $media, $color, $animal) {
         $this->animal = $animal;
         $this->name = $name;
         $this->color = $color;
-        $this->petNum = Pet::$numOfAnimal;
-        Pet::$numOfAnimal++;
+        $this->petID = $petID;
+        $this->userID = $userID;
+        $this->chipID = $chipID;
+        $this->media = $media;
     }
 
+    function getMedia() {
+        return $this->media;
+    }
     function toString() {
         $output = "";
         $output .= "<hr>";
         $output .= "<h4>Animal Type: " . $this->animal . "</h4>";
         $output .= "<h5>Name: " . $this->name . "</h5>";
         $output .= "<h5>Color: " . $this->color . "</h5>";
-        $output .= "<h5>ID: " . strval($this->petNum) . "</h5>";
+        $output .= "<h5>ID: " . strval($this->petID) . "</h5>";
         $output .= "<hr>";
         return $output;
     }

@@ -19,6 +19,7 @@ class Mailbox {
     function deleteMessage($index) {
         //Database::deleteMessage($this->messages[$index]->getMessageID());
         \array_splice($this->messages, $index, 1);
+        $this->count--;
         return true;
     }
 

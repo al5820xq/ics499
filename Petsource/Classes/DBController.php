@@ -7,6 +7,9 @@ DEFINE ('DB_NAME', 'test1');
 
 include_once("Address.php");
 include_once("PetOwner.php");
+include_once("Pet.php");
+include_once("Message.php");
+include_once("Mailbox.php");
 
 
 class DBController {
@@ -87,23 +90,135 @@ class DBController {
     }
 
     static function getPet($petID) {
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        or die('Could not connect to MySQL '. mysqli_connect_error());
+        $query = "SElECT * FROM pets WHERE pet_id=$petID";
+
+        $response = @mysqli_query($dbc, $query);
+
+        if($response) {
+            $row = mysqli_fetch_array($response);
+            $userID = @$row['user_id'];
+            $name = @$row['name'];
+            $chipID = @$row['chip_id'];
+            $media = @$row['media'];
+            $color = @$row['color'];
+            $animal = @$row['animal'];
+        } else {
+            echo "couldnt issue database query";
+            echo mysqli_error($dbc);
+        }
+        $output = new Pet($userID, $petID, $name, $chipID, $media, $color, $animal);
+        mysqli_close($dbc);
+        return $output;
 
     }
 
     static function getPets($userID) {
-        
+        $output = array();
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        or die('Could not connect to MySQL '. mysqli_connect_error());
+        $query = "SElECT * FROM pets WHERE user_id=$userID";
+
+        $response = @mysqli_query($dbc, $query);
+
+        if($response) {
+            while ($row = mysqli_fetch_array($response)) {
+                $petID = @$row['pet_id'];
+                $name = @$row['name'];
+                $chipID = @$row['chip_id'];
+                $media = @$row['media'];
+                $color = @$row['color'];
+                $animal = @$row['animal'];
+                $pet = new Pet($userID, $petID, $name, $chipID, $media, $color, $animal);
+                $output[] = $pet;
+            }  
+        } else {
+            echo "couldnt issue database query";
+            echo mysqli_error($dbc);
+        }
+        mysqli_close($dbc);
+        return $output;
     }
 
     static function getMailbox($userID) {
-        
+        $output = new Mailbox($userID);
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        or die('Could not connect to MySQL '. mysqli_connect_error());
+        $query = "SElECT * FROM messages WHERE user_id=$userID";
+
+        $response = @mysqli_query($dbc, $query);
+
+        if($response) {
+            while ($row = mysqli_fetch_array($response)) {
+                $messageID = @$row['message_id'];
+                $message = @$row['message'];
+                $petID = @$row['pet_id'];
+                $messageObject = new Message($messageID, $userID, $petID, $message);
+                $output->addMessage($messageObject);
+            }  
+        } else {
+            echo "couldnt issue database query";
+            echo mysqli_error($dbc);
+        }
+        mysqli_close($dbc);
+        return $output;
     }
 
     static function getAddress($userID) {
-        
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        or die('Could not connect to MySQL '. mysqli_connect_error());
+        $query = "SElECT address, zipcode, city, state FROM user WHERE user_id=$userID";
+
+        $response = @mysqli_query($dbc, $query);
+
+        if($response) {
+            $row = mysqli_fetch_array($response);
+            $address = @$row['address'];
+            $zipcode = @$row['zipcode'];
+            $city = @$row['city'];
+            $state = @$row['state'];
+        } else {
+            echo "couldnt issue database query";
+            echo mysqli_error($dbc);
+        }
+        $output = new Address($address, $city, $zipcode, $state);
+        mysqli_close($dbc);
+        return $output;
     }
 
     static function insertPetOwner($user) {
-        
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        or die('Could not connect to MySQL '. mysqli_connect_error());
+        $username = $user->getUsername();
+        $fname = $user->getFirstName();
+        $lname = $user->getLastName();
+        $email = $user->getEmail();
+        $address = $user->getAddress()->getStreetAddress();
+        $city = $user->getAddress()->getCity();
+        $zipcode = $user->getAddress()->getZipcode();
+        $state = $user->getAddress()->getState();
+        $phone = $user->getPhone();
+        $password = $user->getPassword();
+        $insertQuery = "INSERT INTO user (user_id, firstname, lastname, username, password, email, 
+        phone, address, zipcode, city, state) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = mysqli_prepare($dbc, $insertQuery);
+        mysqli_stmt_bind_param($stmt, "sssssssiss", $fname, $lname, $username, $password, $email,
+        $phone, $address, $zipcode, $city, $state);
+        mysqli_stmt_execute($stmt);
+        $affected_rows = mysqli_stmt_affected_rows($stmt);
+        if($affected_rows == 1){
+            echo 'User Entered';
+            mysqli_stmt_close($stmt);
+            $output = true;
+        } else {
+            echo 'Error Occurred';
+            echo mysqli_error($dbc);
+            mysqli_stmt_close($stmt);
+            $output = false;
+        }
+        mysqli_close($dbc);
+        return $output;
     }
 
     static function insertPet($animal) {
@@ -148,16 +263,18 @@ class DBController {
     }
 
     static function pet5pic() {
-        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        /* $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
         or die('Could not connect to MySQL '. mysqli_connect_error());
 
         $query = "SELECT media FROM pets WHERE pet_id=5";
         $response = @mysqli_query($dbc, $query);
         $row = mysqli_fetch_array($response);
-        $picture = @$row['media'];
+        $picture = @$row['media']; */
+        $pet = DBController::getPet(5);
+        $picture = $pet->getMedia();
         $finalPicture = '<img src="data:image/jpeg;base64,' . base64_encode($picture) . '" >';
         echo($finalPicture);
-        mysqli_close($dbc);
+        //mysqli_close($dbc);
     }
 }
 

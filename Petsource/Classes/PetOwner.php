@@ -22,12 +22,36 @@ class PetOwner {
         $this->address = $address;
     }
 
-    function getUser() {
+    function getUsername() {
         return $this->username;
     }
 
-    function getID() {
+    function getPassword() {
+        return $this->password;
+    }
+
+    function getUserID() {
         return $this->userID;
+    }
+
+    function getFirstName() {
+        return $this->firstName;
+    }
+
+    function getLastName() {
+        return $this->lastName;
+    }
+
+    function getEmail() {
+        return $this->email;
+    }
+
+    function getPhone() {
+        return $this->phone;
+    }
+
+    function getAddress() {
+        return $this->address;
     }
 
     function toString() {
