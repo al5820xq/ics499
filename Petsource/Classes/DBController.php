@@ -304,7 +304,61 @@ class DBController {
     }
 
     static function updatePet($pet, $username, $password) {
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        or die('Could not connect to MySQL '. mysqli_connect_error());
+        $species = $pet->getAnimal();
+        $name = $pet->getName();
+        $color = $pet->getColor();
+        $userID = $pet->getUserID();
+        $chipID = $pet->getChipID();
+        $media = $pet->getMedia();
+        $petID = $pet->getPetID();
+
+        $validation1 = DBController::isUser($username, $password);
+        $validation2 = false;
+        $query1 = "SElECT user_id FROM user WHERE username='$username' AND password='$password'";
+
+        $response = @mysqli_query($dbc, $query1);
+
+        if($response) {
+            $row = mysqli_fetch_array($response);
+            $userIDClaim = @$row['user_id'];
+            $query2 = "SElECT user_id FROM pets WHERE pet_id=$petID";
+            $response = @mysqli_query($dbc, $query2);
+            if($response) {
+                $row = mysqli_fetch_array($response);
+                $userIDActual = @$row['user_id'];
+                $validation2 = $userIDClaim == $userIDActual;
+            } else {
+                echo "couldnt issue database query";
+                echo mysqli_error($dbc);
+            }
+        } else {
+            echo "couldnt issue database query";
+            echo mysqli_error($dbc);
+        }
+       
+        if($validation1 && $validation2) {
+            if (is_null($media)){
+                $media = "NULL";
+            }
+            $insertQuery = "UPDATE pets SET user_id=$userID, name='$name', animal='$species',
+                color='$color', chip_id='$chipID', media=$media WHERE pet_id=$petID";
+            if (mysqli_query($dbc, $insertQuery)) {
+                echo "Record updated successfully";
+                $output = true;
+            } else {
+                echo "Error updating record: " . mysqli_error($dbc);
+                $output = false;
+            }
+        } else {
+            echo "Error updating record: Invalid pet owner";
+            $output = false;
+        }
         
+        mysqli_close($dbc);
+        return $output;
+
     }
 
     static function deletePet($petID, $username, $password) {
