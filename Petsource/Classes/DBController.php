@@ -222,15 +222,85 @@ class DBController {
     }
 
     static function insertPet($animal) {
-        
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        or die('Could not connect to MySQL '. mysqli_connect_error());
+        $species = $animal->getAnimal();
+        $name = $animal->getName();
+        $color = $animal->getColor();
+        $userID = $animal->getUserID();
+        $chipID = $animal->getChipID();
+        $media = $animal->getMedia();
+        $insertQuery = "INSERT INTO pets (pet_id, user_id, name, animal, color, chip_id, media) 
+        VALUES (NULL, ?, ?, ?, ?, ?, ?)";
+        $stmt = mysqli_prepare($dbc, $insertQuery);
+        mysqli_stmt_bind_param($stmt, "issssb", $userID, $name, $species, $color, $chipID, $media);
+        mysqli_stmt_execute($stmt);
+        $affected_rows = mysqli_stmt_affected_rows($stmt);
+        if($affected_rows == 1){
+            echo 'Pet Entered';
+            mysqli_stmt_close($stmt);
+            $output = true;
+        } else {
+            echo 'Error Occurred';
+            echo mysqli_error($dbc);
+            mysqli_stmt_close($stmt);
+            $output = false;
+        }
+        mysqli_close($dbc);
+        return $output;
     }
 
     static function insertMessage($message) {
-        
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        or die('Could not connect to MySQL '. mysqli_connect_error());
+        $petID = $message->getPetID();
+        $userID = $message->getUserID();
+        $messageString = $message->getMessage();
+        $insertQuery = "INSERT INTO messages (message_id, pet_id, user_id, message) 
+        VALUES (NULL, ?, ?, ?)";
+        $stmt = mysqli_prepare($dbc, $insertQuery);
+        mysqli_stmt_bind_param($stmt, "iis", $petID, $userID, $messageString);
+        mysqli_stmt_execute($stmt);
+        $affected_rows = mysqli_stmt_affected_rows($stmt);
+        if($affected_rows == 1){
+            echo 'Message Entered';
+            mysqli_stmt_close($stmt);
+            $output = true;
+        } else {
+            echo 'Error Occurred';
+            echo mysqli_error($dbc);
+            mysqli_stmt_close($stmt);
+            $output = false;
+        }
+        mysqli_close($dbc);
+        return $output;
     }
 
     static function updatePetOwner($user) {
-        
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        or die('Could not connect to MySQL '. mysqli_connect_error());
+        $userID = $user->getUserID();
+        $username = $user->getUsername();
+        $fname = $user->getFirstName();
+        $lname = $user->getLastName();
+        $email = $user->getEmail();
+        $address = $user->getAddress()->getStreetAddress();
+        $city = $user->getAddress()->getCity();
+        $zipcode = $user->getAddress()->getZipcode();
+        $state = $user->getAddress()->getState();
+        $phone = $user->getPhone();
+        $password = $user->getPassword();
+        $insertQuery = "UPDATE user SET firstname='$fname', lastname='$lname', username='$username', password='$password', email='$email', 
+        phone='$phone', address='$address', zipcode=$zipcode, city='$city', state='$state' WHERE user_id=$userID";
+        if (mysqli_query($dbc, $insertQuery)) {
+            echo "Record updated successfully";
+            $output = true;
+        } else {
+            echo "Error updating record: " . mysqli_error($dbc);
+            $output = false;
+        }
+        mysqli_close($dbc);
+        return $output;
     }
 
     static function updatePet($pet, $username, $password) {

@@ -13,6 +13,10 @@ class Message {
         $this->message = $message;
     }
 
+    function getMessageID() {
+        return $this->messageID;
+    }
+
     function getPetID() {
         return $this->petID;
     }

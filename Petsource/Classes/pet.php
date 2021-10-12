@@ -19,6 +19,30 @@ class Pet {
         $this->media = $media;
     }
 
+    function getAnimal() {
+        return $this->animal;
+    }
+
+    function getName() {
+        return $this->name;
+    }
+
+    function getColor() {
+        return $this->color;
+    }
+
+    function getPetID() {
+        return $this->petID;
+    }
+
+    function getUserID() {
+        return $this->userID;
+    }
+
+    function getChipID() {
+        return $this->chipID;
+    }
+
     function getMedia() {
         return $this->media;
     }
