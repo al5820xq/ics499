@@ -337,7 +337,6 @@ class DBController {
             echo "couldnt issue database query";
             echo mysqli_error($dbc);
         }
-       
         if($validation1 && $validation2) {
             if (is_null($media)){
                 $media = "NULL";
@@ -358,19 +357,77 @@ class DBController {
         
         mysqli_close($dbc);
         return $output;
-
     }
 
     static function deletePet($petID, $username, $password) {
-        
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        or die('Could not connect to MySQL '. mysqli_connect_error());
+        $validation1 = DBController::isUser($username, $password);
+        $validation2 = false;
+        $query1 = "SElECT user_id FROM user WHERE username='$username' AND password='$password'";
+        $response = @mysqli_query($dbc, $query1);
+        if($response) {
+            $row = mysqli_fetch_array($response);
+            $userIDClaim = @$row['user_id'];
+            $query2 = "SElECT user_id FROM pets WHERE pet_id=$petID";
+            $response = @mysqli_query($dbc, $query2);
+            if($response) {
+                $row = mysqli_fetch_array($response);
+                $userIDActual = @$row['user_id'];
+                $validation2 = $userIDClaim == $userIDActual;
+            } else {
+                echo "couldnt issue database query";
+                echo mysqli_error($dbc);
+            }
+        } else {
+            echo "couldnt issue database query";
+            echo mysqli_error($dbc);
+        }
+        if($validation1 && $validation2) {
+            $deleteQuery = "DELETE FROM pets WHERE pet_id=$petID";
+            if (mysqli_query($dbc, $deleteQuery)) {
+                echo "Pet deleted successfully";
+                $output = true;
+            } else {
+                echo "Error updating record: " . mysqli_error($dbc);
+                $output = false;
+            }
+        } else {
+            echo "Error updating record: Invalid pet owner";
+            $output = false;
+        }
+        mysqli_close($dbc);
+        return $output;
     }
 
     static function deletePetOwner($userID) {
-        
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        or die('Could not connect to MySQL '. mysqli_connect_error());
+        $deleteQuery = "DELETE FROM user WHERE user_id=$userID";
+        if (mysqli_query($dbc, $deleteQuery)) {
+            echo "User deleted successfully";
+            $output = true;
+        } else {
+            echo "Error updating record: " . mysqli_error($dbc);
+            $output = false;
+        }
+        mysqli_close($dbc);
+        return $output;
     }
 
     static function deleteMessage($messageID) {
-        
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        or die('Could not connect to MySQL '. mysqli_connect_error());
+        $deleteQuery = "DELETE FROM messages WHERE user_id=$messageID";
+        if (mysqli_query($dbc, $deleteQuery)) {
+            echo "Message deleted successfully";
+            $output = true;
+        } else {
+            echo "Error updating record: " . mysqli_error($dbc);
+            $output = false;
+        }
+        mysqli_close($dbc);
+        return $output;
     }
 
 

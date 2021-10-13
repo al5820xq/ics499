@@ -40,5 +40,8 @@ $address = new Address('9733 Avocet St NW', 'Coon Rapids', '55433', 'MN');
 $updateUser = new PetOwner(5, 'dogcaptain', 'password', 'Frank', 'Reynolds', 'johndoe@gmail.com', '612-632-6526', $address);
 //DBController::updatePetOwner($updateUser);
 $pet = new Pet(5, 8, 'Molly', '18007546784', NULL, 'Black', 'DOG');
-DBController::updatePet($pet, 'dogcaptain', 'passwoord');
+//DBController::updatePet($pet, 'dogcaptain', 'passwoord');
+//DBController::deletePet(6, 'jfk','password');
+//DBController::deletePetOwner(6);
+
 ?>
