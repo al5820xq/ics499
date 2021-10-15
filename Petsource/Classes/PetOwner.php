@@ -69,13 +69,7 @@ class PetOwner {
         echo '<tr><td align="left"><b>Phone Number: </b></td>';
         echo '<td align="left">'.$this->phone.'</td></tr>';
         echo '<tr><td align="left"><b>Address: </b></td>';
-        echo '<td align="left">'.$this->address.'</td></tr>';
-        echo '<tr><td align="left"><b>Zip Code: </b></td>';
-        echo '<td align="left">'.$this->zipcode.'</td></tr>';
-        echo '<tr><td align="left"><b>City: </b></td>';
-        echo '<td align="left">'.$this->city.'</td></tr>';
-        echo '<tr><td align="left"><b>State: </b></td>';
-        echo '<td align="left">'.$this->state.'</td></tr>';
+        echo '<td align="left">'.$this->address->toString().'</td></tr>';
         echo '</table>';
     }
 }

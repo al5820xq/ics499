@@ -25,7 +25,11 @@ class Profile {
     }
 
     function displayProfile() {
-
+        echo $this->petOwner->toString();
+        echo'<h1>Pets</h1>';
+        foreach($this->petList as $pet) {
+            echo $pet->toString();
+        }
     }
 
 }
