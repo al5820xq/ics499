@@ -53,6 +53,38 @@ class DBController {
         return $output;
     }
 
+    static function isUsername($username) {
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        or die('Could not connect to MySQL '. mysqli_connect_error());
+
+        if ($username == "" || !is_null($username)) {
+            mysqli_close($dbc);
+            return false;
+        }
+
+        $query = "SElECT user_id FROM user WHERE username='$username'";
+
+        $response = @mysqli_query($dbc, $query);
+
+        if($response) {
+            $row = mysqli_fetch_array($response);
+            $userID = @$row['user_id'];
+            
+            if (!is_null($userID)) {
+                $output = true;
+            } else {
+                $output = false;
+            }
+        } else {
+            echo "couldnt issue database query";
+            echo mysqli_error($dbc);
+            $output = false;
+        }
+
+        mysqli_close($dbc);
+        return $output;
+    }
+
     /*
     Returns a PetOwner object representing a user in the database that has the provided username or 
     password.
