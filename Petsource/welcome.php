@@ -1,17 +1,6 @@
 <?php
 //header
-include("Classes/Templates/header.html");
-?>
-<nav>
-	<ul id="MenuItems">
-		<li><a href="index.html">Home</a></li>
-		<li><a href="logout.php">Logout</a></li>
-		<li><a href="register.php">Register</a></li>
-		<li><a href="">ChipID Search</a></li>
-		<li><a href="">About</a></li>
-	</ul>
-</nav>
-<?php
+include("Classes/Templates/loggedinheader.html");
 //classes
 include_once("Classes/Profile.php");
 session_start();
