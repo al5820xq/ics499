@@ -57,7 +57,7 @@ class DBController {
         $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
         or die('Could not connect to MySQL '. mysqli_connect_error());
 
-        if ($username == "" || !is_null($username)) {
+        if ($username == "" || is_null($username)) {
             mysqli_close($dbc);
             return false;
         }
