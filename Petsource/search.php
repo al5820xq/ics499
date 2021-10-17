@@ -4,7 +4,6 @@ session_start();
  
 // Include config file
 require_once "Classes/Guest.php";
-require_once "Classes/Templates/style.php";
  
 // Define variables and initialize with empty values
 $petid = "";
@@ -27,7 +26,7 @@ if(isset($_GET["petid"])){
         $guest = new Guest();
         $foundPet = $guest->searchPet($petid);
         if($foundPet){
-            echo $guest->toString();
+            $petSentence = $guest->toString();
         } else{
             $petid_err = "invalid pet id.";
                 
@@ -43,6 +42,9 @@ include("Classes/Templates/header.html");
 
 if (!$foundPet) {
     include("Classes/Templates/searchform.php");
+} else {
+    $_SESSION['guest'] = serialize($guest);
+    include("Classes/Templates/messageform.php");
 }
 
 
