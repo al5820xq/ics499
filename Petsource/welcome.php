@@ -10,7 +10,7 @@ $username = $_SESSION["username"];
 $password = $_SESSION["password"];
 $login = new Profile();
 if ($login->login($username, $password)) {
-
+    $_SESSION["profile"] = serialize($login);
 } else {
     echo('<h1>Not logged in</h1>');
     header("Location: login.php");

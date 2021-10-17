@@ -32,6 +32,15 @@ class Profile {
         }
     }
 
+    function isUser() {
+        return DBController::isUser($this->petOwner->getUsername(), $this->petOwner->getPassword());
+    }
+
+    function registerPet($name, $animal, $color, $chipID, $media) {
+        $pet = new Pet($this->petOwner->getUserID(), NULL, $name, $chipID, $media, $color, $animal);
+        return DBController::insertPet($pet);
+    }
+
 }
 
 ?>

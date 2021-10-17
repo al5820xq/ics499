@@ -6,6 +6,7 @@ $_SESSION["loggedin"] = false;
 //$_SESSION["id"] = $id;
 $_SESSION["username"] = NULL;                            
 $_SESSION["password"] = NULL;
+$_SESSION["profile"] = NULL;
 // Redirect user to welcome page
 header("location: login.php");
 ?>

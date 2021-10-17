@@ -262,10 +262,15 @@ class DBController {
         $userID = $animal->getUserID();
         $chipID = $animal->getChipID();
         $media = $animal->getMedia();
+        if (is_null($media)) {
+            $media = "NULL";
+        } else {
+            $media = "'$media'";
+        }
         $insertQuery = "INSERT INTO pets (pet_id, user_id, name, animal, color, chip_id, media) 
-        VALUES (NULL, ?, ?, ?, ?, ?, ?)";
+        VALUES (NULL, ?, ?, ?, ?, ?, $media)";
         $stmt = mysqli_prepare($dbc, $insertQuery);
-        mysqli_stmt_bind_param($stmt, "issssb", $userID, $name, $species, $color, $chipID, $media);
+        mysqli_stmt_bind_param($stmt, "issss", $userID, $name, $species, $color, $chipID);
         mysqli_stmt_execute($stmt);
         $affected_rows = mysqli_stmt_affected_rows($stmt);
         if($affected_rows == 1){

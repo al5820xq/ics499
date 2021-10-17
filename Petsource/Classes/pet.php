@@ -46,6 +46,17 @@ class Pet {
     function getMedia() {
         return $this->media;
     }
+
+    function imgsrc() {
+        $output = '';
+        if (is_null($this->media)) {
+            $output = "Classes/Templates/images/defaultpet.png";
+        } else {
+            $output = 'data:image/jpeg;base64,' . base64_encode($this->media);
+        }
+        return $output;
+    }
+
     function toString() {
         $output = "";
         $output .= "<hr>";
@@ -53,6 +64,7 @@ class Pet {
         $output .= "<h5>Name: " . $this->name . "</h5>";
         $output .= "<h5>Color: " . $this->color . "</h5>";
         $output .= "<h5>ID: " . strval($this->petID) . "</h5>";
+        $output .= '<img src="' . $this->imgsrc() . '">';
         $output .= "<hr>";
         return $output;
     }
