@@ -46,7 +46,7 @@ class Address {
     }
 
     function toString() {
-        return $this->streetAddress . ' ' . $this->city . ' ' . $this->state . ' ' . $this->zipcode;
+        return str_replace("+"," ",$this->streetAddress) . ' ' . $this->city . ' ' . $this->state . ' ' . $this->zipcode;
     }
 }
 

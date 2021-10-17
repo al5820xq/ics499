@@ -136,11 +136,18 @@ class DBController {
             $media = @$row['media'];
             $color = @$row['color'];
             $animal = @$row['animal'];
+            if (is_null($userID)) {
+                $output = NULL;
+            } else {
+                $output = new Pet($userID, $petID, $name, $chipID, $media, $color, $animal);
+            }
+            
         } else {
             echo "couldnt issue database query";
             echo mysqli_error($dbc);
+            $output = NULL;
         }
-        $output = new Pet($userID, $petID, $name, $chipID, $media, $color, $animal);
+        
         mysqli_close($dbc);
         return $output;
 
