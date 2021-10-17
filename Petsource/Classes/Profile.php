@@ -41,6 +41,14 @@ class Profile {
         return DBController::insertPet($pet);
     }
 
+    function registerUser($username, $password, $firstname, $lastname, $email, $phonenumber, 
+                            $address, $city, $zipcode, $state) {
+        // Prepare an insert statement
+        $addressObject = new Address($address, $city, $zipcode, $state);
+        $petOwner = new PetOwner(NULL, $username, $password, $firstname, $lastname, $email, $phonenumber, $addressObject);
+        return DBController::insertPetOwner($petOwner);
+    }
+
 }
 
 ?>

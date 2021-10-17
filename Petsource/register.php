@@ -1,6 +1,6 @@
 <?php
 // Include config file
-include_once "Classes/DBController.php";
+include_once "Classes/Profile.php";
  
 // Define variables and initialize with empty values
 $username = $firstname = $lastname = $email = $address = $city = $zipcode = $state = $phonenumber = $password = $confirm_password = "";
@@ -121,10 +121,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         empty($confirm_password_err)){
         
         // Prepare an insert statement
-        $addressObject = new Address($address, $city, $zipcode, $state);
-        $petOwner = new PetOwner(NULL, $username, $password, $firstname, $lastname, $email, $phonenumber, $addressObject);
+        $profile = new Profile();
+
         // Attempt to execute the prepared statement
-        if(DBController::insertPetOwner($petOwner)){
+        if($profile->registerUser($username, $password, $firstname, $lastname, $email, $phonenumber, 
+            $address, $city, $zipcode, $state)){
             // Redirect to login page
             header("location: login.php");
         } else{
