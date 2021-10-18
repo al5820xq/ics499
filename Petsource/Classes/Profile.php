@@ -28,7 +28,7 @@ class Profile {
         echo $this->petOwner->toString();
         echo'<h1>Pets</h1>';
         foreach($this->petList as $pet) {
-            echo $pet->toString();
+            $pet->displayPet();
         }
     }
 

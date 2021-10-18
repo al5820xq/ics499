@@ -57,6 +57,15 @@ class Pet {
         return $output;
     }
 
+    function qrsrc() {
+        $output = "https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=http://localhost/ics499/Petsource/search.php?petid=".$this->getPetID()."&choe=UTF-8";
+        return $output;
+    }
+
+    function displayPet() {
+        include("Classes/Templates/petprofile.php");
+    }
+
     function toString() {
         $output = "";
         $output .= "<hr>";
