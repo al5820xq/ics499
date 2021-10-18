@@ -14,7 +14,7 @@
         <p><?php echo $petid_err; ?></p>
     </div>
     <div class="form-group">
-        <input type="submit" class="btn btn-primary" value="Search" name="search">
+        <input type="submit" class="btn btn-primary" value="Search">
     </div>
 </form>
 </div>
