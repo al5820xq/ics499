@@ -28,6 +28,10 @@ class Message {
     function getMessage() {
         return $this->message;
     }
+
+    function displayMessage() {
+        
+    }
 }
 
 ?>

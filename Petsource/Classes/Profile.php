@@ -16,7 +16,6 @@ class Profile {
             $this->petOwner = DBController::getPetOwner($username, $password);
             $userID = $this->petOwner->getUserID();
             $this->petList = DBController::getPets($userID);
-            $this->inbox = DBController::getMailbox($userID);
             $this->displayProfile();
             return true;
         } else {
@@ -47,6 +46,24 @@ class Profile {
         $addressObject = new Address($address, $city, $zipcode, $state);
         $petOwner = new PetOwner(NULL, $username, $password, $firstname, $lastname, $email, $phonenumber, $addressObject);
         return DBController::insertPetOwner($petOwner);
+    }
+
+    function getMessages() {
+        $this->inbox = DBController::getMailbox($this->petOwner->getUserID());
+        foreach($this->inbox->messages as $message) {
+            $name = $this->petName($message->getPetID());
+            $messageString = $message->getMessage();
+            include("Classes/Templates/messagedisplay.php");
+        }
+    }
+
+    function petName($petID) {
+        foreach($this->petList as $pet) {
+            if ($pet->getPetID() == $petID) {
+                return $pet->getName();
+            }
+        }
+        return "";
     }
 
 }
