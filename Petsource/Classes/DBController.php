@@ -11,6 +11,15 @@ include_once("Pet.php");
 include_once("Message.php");
 include_once("Mailbox.php");
 
+function generateID() {
+    $characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+    $charLength = strlen($characters) - 1;
+    $output = "";
+    for ($index = 0; $index < 10; $index++) {
+        $output .= $characters[rand(0,$charLength)];
+    }
+    return $output;
+}
 
 class DBController {
     
