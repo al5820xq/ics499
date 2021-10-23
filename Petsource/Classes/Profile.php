@@ -50,6 +50,14 @@ class Profile {
         return DBController::insertPetOwner($petOwner);
     }
 
+    function updateUser($password, $firstname, $lastname, $email, $phonenumber, 
+                            $address, $city, $zipcode, $state) {
+        // Prepare an update statement
+        $addressObject = new Address($address, $city, $zipcode, $state);
+        $petOwner = new PetOwner($this->petOwner->getUserID(), $this->petOwner->getUsername(), $password, $firstname, $lastname, $email, $phonenumber, $addressObject);
+        return DBController::updatePetOwner($petOwner);
+    }
+
     function getMessages() {
         $this->inbox = DBController::getMailbox($this->petOwner->getUserID());
         foreach($this->inbox->messages as $message) {
