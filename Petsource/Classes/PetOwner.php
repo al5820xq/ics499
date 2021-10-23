@@ -47,6 +47,12 @@ class PetOwner {
     }
 
     function getPhone() {
+        $number = str_replace("-","",$this->phone);
+        if (strlen($number) == 10) {
+            return substr($number, 0, 3) . "-" . substr($number, 3, 3) . "-" .substr($number, 6, 4);
+        } elseif (strlen($number) == 11) {
+            return substr($number, 0, 1) . "-" . substr($number, 1, 3) . "-" . substr($number, 4, 3) . "-" .substr($number, 7, 4);
+        }
         return $this->phone;
     }
 

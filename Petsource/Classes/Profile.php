@@ -26,8 +26,10 @@ class Profile {
     function displayProfile() {
         echo $this->petOwner->toString();
         echo'<h1>Pets</h1>';
+        $petIndex = 0;
         foreach($this->petList as $pet) {
             $pet->displayPet();
+            $petIndex++;
         }
     }
 
@@ -64,6 +66,19 @@ class Profile {
             }
         }
         return "";
+    }
+
+    function getPet($petID) {
+        foreach($this->petList as $pet) {
+            if ($pet->getPetID() == $petID) {
+                return $pet;
+            }
+        }
+        return NULL;
+    }
+
+    function getPetOwner() {
+        return $this->petOwner;
     }
 
 }

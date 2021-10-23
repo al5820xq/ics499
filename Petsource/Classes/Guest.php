@@ -24,6 +24,10 @@ class Guest {
         return DBController::insertMessage($messageObject);
     }
 
+    function getImg() {
+        return $this->pet->imgsrc();
+    }
+
     function toString() {
         $output = '<p>Hello, my name is ' . ucfirst(strtolower($this->pet->getName())) . ". I am a " 
         . strtolower($this->pet->getColor()) . " " . strtolower($this->pet->getAnimal())

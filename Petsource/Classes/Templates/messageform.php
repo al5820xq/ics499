@@ -1,6 +1,6 @@
 <style>
     .messageBox {
-    	width: 80%;
+    	width: 100%;
     	height: 150px;
     	padding: 12px 20px;
     	box-sizing: border-box;
@@ -15,6 +15,7 @@
     <div class="col-1"> 
         <h1 class="title">Message Owner?</h1>
         <?php echo $petSentence; ?>
+        <img src="<?php echo $guest->getImg(); ?>" width="100%">
         <br>
     </div>    
 </div>
