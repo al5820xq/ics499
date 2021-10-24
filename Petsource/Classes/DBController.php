@@ -473,7 +473,7 @@ class DBController {
     static function deleteMessage($messageID) {
         $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
         or die('Could not connect to MySQL '. mysqli_connect_error());
-        $deleteQuery = "DELETE FROM messages WHERE user_id=$messageID";
+        $deleteQuery = "DELETE FROM messages WHERE message_id=$messageID";
         if (mysqli_query($dbc, $deleteQuery)) {
             echo "Message deleted successfully";
             $output = true;

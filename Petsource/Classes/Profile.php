@@ -66,10 +66,15 @@ class Profile {
     function getMessages() {
         $this->inbox = DBController::getMailbox($this->petOwner->getUserID());
         foreach($this->inbox->messages as $message) {
+            $messageID = $message->getMessageID();
             $name = $this->petName($message->getPetID());
             $messageString = $message->getMessage();
             include("Classes/Templates/messagedisplay.php");
         }
+    }
+
+    function deleteMessage($messageID) {
+        $this->inbox->deleteMessage(intval($messageID));
     }
 
     function petName($petID) {

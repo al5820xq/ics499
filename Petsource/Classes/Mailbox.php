@@ -16,11 +16,17 @@ class Mailbox {
         $this->count++;
     }
 
-    function deleteMessage($index) {
-        //Database::deleteMessage($this->messages[$index]->getMessageID());
-        \array_splice($this->messages, $index, 1);
-        $this->count--;
-        return true;
+    function deleteMessage($messageID) {
+        for ($index = 0; $index < $this->count; $index++) {
+            if ($this->messages[$index]->getMessageID() == $messageID) {
+                DBController::deleteMessage($messageID);
+                unset($this->messages[$index]);
+                //array_splice($this->messages, $index, 1);
+                $this->count--;
+                return true;
+            }
+        }
+        return false;
     }
 
     function deleteAllMessages() {
