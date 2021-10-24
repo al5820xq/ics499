@@ -77,6 +77,10 @@ class Profile {
         $this->inbox->deleteMessage(intval($messageID));
     }
 
+    function deletePet($petID) {
+        DBController::deletePet($petID, $this->petOwner->getUsername(), $this->petOwner->getPassword());
+    }
+
     function petName($petID) {
         foreach($this->petList as $pet) {
             if ($pet->getPetID() == $petID) {
