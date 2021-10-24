@@ -58,6 +58,11 @@ class Profile {
         return DBController::updatePetOwner($petOwner);
     }
 
+    function updatePet($petID, $name, $animal, $color, $chipID, $media) {
+        $pet = new Pet($this->petOwner->getUserID(), $petID, $name, $chipID, $media, $color, $animal);
+        return DBController::updatePet($pet, $this->petOwner->getUsername(), $this->petOwner->getPassword());
+    }
+
     function getMessages() {
         $this->inbox = DBController::getMailbox($this->petOwner->getUserID());
         foreach($this->inbox->messages as $message) {

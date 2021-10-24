@@ -393,6 +393,8 @@ class DBController {
         if($validation1 && $validation2) {
             if (is_null($media)){
                 $media = "NULL";
+            } else {
+                $media = "'$media'";
             }
             $insertQuery = "UPDATE pets SET user_id=$userID, name='$name', animal='$species',
                 color='$color', chip_id='$chipID', media=$media WHERE pet_id=$petID";
