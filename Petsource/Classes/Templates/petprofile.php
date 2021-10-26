@@ -13,7 +13,7 @@
             <img src="<?php echo $this->qrsrc(); ?>" width="50mm">
 		</div>
 		<div class="col-4">
-			<h3><a href="poster.php?petid=<?php echo $this->petID; ?>">Missing Pet</a></h3>
+			<h3><a href="posterdescription.php?petid=<?php echo $this->petID; ?>">Missing Pet</a></h3>
 			<h3><a href="updatepet.php?petid=<?php echo $this->petID; ?>">Update Pet</a></h3>
 			<h3><a href="deletepet.php?petid=<?php echo $this->petID; ?>">Delete Pet</a></h3>
 		</div>

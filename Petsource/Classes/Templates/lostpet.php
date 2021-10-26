@@ -75,7 +75,7 @@ function convertDefault() {
         <h3>Color: <?php echo $color; ?></h3>
         <h3>Lives In: <?php echo $location; ?></h3>
         <hr>
-        <h4>Description: If you see Spot please call me. Spot is a very calm dog and is only a puppy.</h4>
+        <h4>Description: <?php echo $description; ?></h4>
         <hr>
         <h2><?php echo $phone; ?></h2>
         <h2><?php echo $email; ?></h2>

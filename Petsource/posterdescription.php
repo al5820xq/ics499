@@ -17,35 +17,17 @@ if (DBController::isUser($username, $password) && isset($_GET["petid"])) {
     if (is_null($pet)) {
         header("Location: login.php");
     } else {
+        include("Classes/Templates/loggedinheader.html");
         $animal = ucfirst(strtolower($pet->getAnimal()));
         $name = ucfirst(strtolower($pet->getName()));
         $color = ucfirst(strtolower($pet->getColor()));
         $location = $profile->getPetOwner()->getAddress()->getCity() . ", " . $profile->getPetOwner()->getAddress()->getState();
         $phone = $profile->getPetOwner()->getPhone();
         $email = $profile->getPetOwner()->getEmail();
-        $description = $_POST['description'];
-        ob_start();
-        include("Classes/Templates/lostpet.php");
-        $output = ob_get_clean();
-        //echo $output;
-
-        //use Dompdf\Dompdf;
-        /* $options = new Options();
-        $options->set('isRemoteEnabled', TRUE);
-        $contxt = stream_context_create([ 
-            'ssl' => [ 
-                'verify_peer' => FALSE, 
-                'verify_peer_name' => FALSE,
-                'allow_self_signed'=> TRUE
-            ] 
-        ]); */
-        $document = new Dompdf();
-        //$document->setHttpContext($contxt);
-        $document->loadHtml($output);
-        $document->setPaper('A4', 'portrait');
-        $document->render();
-        $document->stream("Pet Flyer", array("Attachment"=>0));
-
+        
+        //include("Classes/Templates/lostpet.php");
+        include("Classes/Templates/posterform.php");
+        include("Classes/Templates/footer.html");
     }
 } else {
     echo('<h1>Not logged in</h1>');
