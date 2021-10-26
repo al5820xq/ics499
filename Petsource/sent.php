@@ -1,4 +1,5 @@
 <?php
+include("Classes/Templates/style.php");
 require_once "Classes/Guest.php";
 include("Classes/Templates/header.html");
 // Processing form data when form is submitted

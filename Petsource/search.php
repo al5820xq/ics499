@@ -4,6 +4,7 @@ session_start();
  
 // Include config file
 require_once "Classes/Guest.php";
+include("Classes/Templates/style.php");
  
 // Define variables and initialize with empty values
 $petid = "";

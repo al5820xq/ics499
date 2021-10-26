@@ -1,4 +1,5 @@
 <?php
+include("Classes/Templates/style.php");
 //classes
 
 use Dompdf\Dompdf;

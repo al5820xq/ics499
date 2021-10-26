@@ -1,4 +1,5 @@
 <?php
+include("Classes/Templates/style.php");
 include("Classes/Templates/header.html");
 ?>
 

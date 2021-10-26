@@ -1,4 +1,5 @@
 <?php
+include("Classes/Templates/style.php");
 // Include config file
 include_once "Classes/Profile.php";
  

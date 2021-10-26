@@ -1,4 +1,5 @@
 <?php
+include("Classes/Templates/style.php");
 // Initialize the session
 session_start();
  

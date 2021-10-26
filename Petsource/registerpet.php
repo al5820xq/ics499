@@ -1,4 +1,5 @@
 <?php
+include("Classes/Templates/style.php");
 //header
 include("Classes/Templates/loggedinheader.html");
 //classes
