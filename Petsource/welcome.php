@@ -1,5 +1,5 @@
 <?php
-
+include("Classes/Templates/style.php");
 //header
 include("Classes/Templates/loggedinheader.html");
 //classes
@@ -18,5 +18,4 @@ if ($login->login($username, $password)) {
 }
 //footer
 include("Classes/Templates/footer.html");
-include("Classes/Templates/style.php");
 ?>

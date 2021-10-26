@@ -14,4 +14,9 @@
 	width: 100%;
 	height: 3rem;            /* Footer height */
   }
+  
+  a:hover {
+	text-decoration: none;
+	color: rgb(255, 0, 140);
+}
 </style>
