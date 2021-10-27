@@ -2,8 +2,9 @@
 
 DEFINE ('DB_USER', 'pineapple');
 DEFINE ('DB_PASSWORD', 'password');
-DEFINE ('DB_HOST', 'localhost');
-DEFINE ('DB_NAME', 'test1');
+DEFINE ('DB_HOST', 'aa4qvl0qtmmc2w.c208q0xtdwxa.us-east-2.rds.amazonaws.com');
+DEFINE ('DB_NAME', 'ebdb');
+DEFINE ('DB_PORT', '3306');
 
 include_once("Address.php");
 include_once("PetOwner.php");
@@ -31,7 +32,7 @@ class DBController {
         returns - boolean
     */
     static function isUser($username, $password) {
-        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT) 
         or die('Could not connect to MySQL '. mysqli_connect_error());
 
         if ($username == "" || $password == "" || $username == "" || $password == "") {
@@ -63,7 +64,7 @@ class DBController {
     }
 
     static function isUsername($username) {
-        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT) 
         or die('Could not connect to MySQL '. mysqli_connect_error());
 
         if ($username == "" || is_null($username)) {
@@ -102,7 +103,7 @@ class DBController {
         returns - PetOwner
     */
     static function getPetOwner($username, $password) {
-        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT) 
         or die('Could not connect to MySQL '. mysqli_connect_error());
         $query = "SElECT user_id, firstname, lastname, username, password, email, 
         phone, address, zipcode, city, state FROM user WHERE username='$username' AND password='$password'";
@@ -131,7 +132,7 @@ class DBController {
     }
 
     static function getPet($petID) {
-        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT) 
         or die('Could not connect to MySQL '. mysqli_connect_error());
         $query = "SElECT * FROM pets WHERE pet_id=$petID";
 
@@ -164,7 +165,7 @@ class DBController {
 
     static function getPets($userID) {
         $output = array();
-        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT) 
         or die('Could not connect to MySQL '. mysqli_connect_error());
         $query = "SElECT * FROM pets WHERE user_id=$userID";
 
@@ -191,7 +192,7 @@ class DBController {
 
     static function getMailbox($userID) {
         $output = new Mailbox($userID);
-        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT) 
         or die('Could not connect to MySQL '. mysqli_connect_error());
         $query = "SElECT * FROM messages WHERE user_id=$userID";
 
@@ -214,7 +215,7 @@ class DBController {
     }
 
     static function getAddress($userID) {
-        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT) 
         or die('Could not connect to MySQL '. mysqli_connect_error());
         $query = "SElECT address, zipcode, city, state FROM user WHERE user_id=$userID";
 
@@ -236,7 +237,7 @@ class DBController {
     }
 
     static function insertPetOwner($user) {
-        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT) 
         or die('Could not connect to MySQL '. mysqli_connect_error());
         $username = $user->getUsername();
         $fname = $user->getFirstName();
@@ -270,7 +271,7 @@ class DBController {
     }
 
     static function insertPet($animal) {
-        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT) 
         or die('Could not connect to MySQL '. mysqli_connect_error());
         $species = $animal->getAnimal();
         $name = $animal->getName();
@@ -304,7 +305,7 @@ class DBController {
     }
 
     static function insertMessage($message) {
-        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT) 
         or die('Could not connect to MySQL '. mysqli_connect_error());
         $petID = $message->getPetID();
         $userID = $message->getUserID();
@@ -330,7 +331,7 @@ class DBController {
     }
 
     static function updatePetOwner($user) {
-        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT) 
         or die('Could not connect to MySQL '. mysqli_connect_error());
         $userID = $user->getUserID();
         $username = $user->getUsername();
@@ -357,7 +358,7 @@ class DBController {
     }
 
     static function updatePet($pet, $username, $password) {
-        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT) 
         or die('Could not connect to MySQL '. mysqli_connect_error());
         $species = $pet->getAnimal();
         $name = $pet->getName();
@@ -415,7 +416,7 @@ class DBController {
     }
 
     static function deletePet($petID, $username, $password) {
-        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT) 
         or die('Could not connect to MySQL '. mysqli_connect_error());
         $validation1 = DBController::isUser($username, $password);
         $validation2 = false;
@@ -456,7 +457,7 @@ class DBController {
     }
 
     static function deletePetOwner($userID) {
-        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT) 
         or die('Could not connect to MySQL '. mysqli_connect_error());
         $deleteQuery = "DELETE FROM user WHERE user_id=$userID";
         if (mysqli_query($dbc, $deleteQuery)) {
@@ -471,7 +472,7 @@ class DBController {
     }
 
     static function deleteMessage($messageID) {
-        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT) 
         or die('Could not connect to MySQL '. mysqli_connect_error());
         $deleteQuery = "DELETE FROM messages WHERE message_id=$messageID";
         if (mysqli_query($dbc, $deleteQuery)) {
@@ -488,7 +489,7 @@ class DBController {
 
 
     static function upimage($tmpname) {
-        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT) 
         or die('Could not connect to MySQL '. mysqli_connect_error());
         $tmpname = addslashes($tmpname);
         $insertQuery = "UPDATE pets SET media = '$tmpname' WHERE pet_id=5";
