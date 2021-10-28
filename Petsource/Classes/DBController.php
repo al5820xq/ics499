@@ -486,33 +486,6 @@ class DBController {
         return $output;
     }
 
-
-
-    static function upimage($tmpname) {
-        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT) 
-        or die('Could not connect to MySQL '. mysqli_connect_error());
-        $tmpname = addslashes($tmpname);
-        $insertQuery = "UPDATE pets SET media = '$tmpname' WHERE pet_id=5";
-
-        $response = @mysqli_query($dbc, $insertQuery);
-        echo mysqli_error($dbc);
-        mysqli_close($dbc);
-    }
-
-    static function pet5pic() {
-        /* $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) 
-        or die('Could not connect to MySQL '. mysqli_connect_error());
-
-        $query = "SELECT media FROM pets WHERE pet_id=5";
-        $response = @mysqli_query($dbc, $query);
-        $row = mysqli_fetch_array($response);
-        $picture = @$row['media']; */
-        $pet = DBController::getPet(5);
-        $picture = $pet->getMedia();
-        $finalPicture = '<img src="data:image/jpeg;base64,' . base64_encode($picture) . '" >';
-        echo($finalPicture);
-        //mysqli_close($dbc);
-    }
 }
 
 ?>
