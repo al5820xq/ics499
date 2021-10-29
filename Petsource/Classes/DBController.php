@@ -486,6 +486,26 @@ class DBController {
         return $output;
     }
 
+    static function maxPetID() {
+        $output = 0;
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT) 
+        or die('Could not connect to MySQL '. mysqli_connect_error());
+        $query = "SElECT MAX(pet_id) AS largest_id FROM pets";
+
+        $response = @mysqli_query($dbc, $query);
+
+        if($response) {
+            while ($row = mysqli_fetch_array($response)) {
+                $output = @$row['largest_id'];
+            }  
+        } else {
+            echo "couldnt issue database query";
+            echo mysqli_error($dbc);
+        }
+        mysqli_close($dbc);
+        return $output;
+    }
+
 }
 
 ?>

@@ -18,25 +18,21 @@ include("Classes/Templates/header.html");
 	<div class="small-container">
 		<h2 class="title">Featured Pets</h2>
 		<div class="row">
-			<div class="col-4">
-				<img src="images/dog1.jpg">
-				<h4>Frank</h4>
-			</div>
-			<div class="col-4">
-				<img src="images/cat1.jpg">
-				<h4>Ms. Fluffles</h4>
-
-			</div>
-			<div class="col-4">
-				<img src="images/hhog1.jpg">
-				<h4>Spike</h4>
-
-			</div>
-			<div class="col-4">
-				<img src="images/dog2.jpg">
-				<h4>Bingo</h4>
-
-			</div>
+			<?php
+			include("Classes/DBController.php");
+			$maxID = DBController::maxPetID();
+			$display = 0;
+			while ($display < 4) {
+				$petID = rand(1, $maxID);
+				$pet = DBController::getPet($petID);
+				if (!is_null($pet)) {
+					$display++;
+					$name = $pet->getName();
+					$picture = $pet->imgsrc();
+					include("Classes/Templates/featurepet.php");
+				}
+			}
+			?>
 		</div>
 		
 		

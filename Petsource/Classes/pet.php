@@ -58,7 +58,7 @@ class Pet {
     }
 
     function qrsrc() {
-        $output = "https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=http://localhost/ics499/Petsource/search.php?petid=".$this->getPetID()."&choe=UTF-8";
+        $output = "https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=https://www.petsource.app/search.php?petid=".$this->getPetID()."&choe=UTF-8";
         return $output;
     }
 

@@ -359,8 +359,11 @@ ul{
 	font-size: 16px;
 	resize: none;
 }
-/*--------------- Media Query ---------------*/
+/*--------------- Media Query ---------------
 @media only screen and (max-width: 800px){
+	body{
+		padding-top: 60mm;
+	}
 	nav ul{
 		position: absolute;
 		top: 70px;
@@ -369,6 +372,7 @@ ul{
 		width: 100%;
 		overflow: hidden;
 		transition: max-height 0.5s;
+		margin-bottom: 3mm;
 	}
 	nav ul li{
 		display: block;
@@ -385,7 +389,7 @@ ul{
 	}
 }
 
-/*------- Media Query for less than 600 screen size ------*/
+/*------- Media Query for less than 600 screen size ------
 @media only screen and (max-width: 600px){
 	.row{
 		text-align: center;
@@ -393,7 +397,7 @@ ul{
 	.col-2, .col-3, .col-4{
 		flex-basis: 100%;
 	}
-}
+}*/
 
 
 
