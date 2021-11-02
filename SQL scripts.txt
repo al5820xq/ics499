@@ -32,4 +32,11 @@ CREATE TABLE `test1`.`messages` (
   `message` VARCHAR(250) NULL,
   PRIMARY KEY (`message_id`));
 
+CREATE TABLE `ebdb`.`petscan` (
+  `scan_id` INT NOT NULL AUTO_INCREMENT,
+  `pet_id` INT NULL,
+  `longitude` DECIMAL(17,14) NULL,
+  `latitude` DECIMAL(17,14) NULL,
+  PRIMARY KEY (`scan_id`));
+
 #test1 is the desired database
