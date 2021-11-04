@@ -81,12 +81,12 @@ include("Classes/Templates/header.html");
             <div class="form-group">
                 <label>Username</label>
                 <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
-                <p class=""><?php echo $username_err; ?></p>
+                <p class="input_error"><?php echo $username_err; ?></p>
             </div>    
             <div class="form-group">
                 <label>Password</label>
                 <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
-                <p class=""><?php echo $password_err; ?></p>
+                <p class="input_error"><?php echo $password_err; ?></p>
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">

@@ -119,27 +119,27 @@ if ($profile->isUser() && isset($_GET["petid"])) {
             <div class="form-group">
                 <label>Pet Name</label>
                 <input type="text" name="name" class="form-control <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $name; ?>">
-                <p class=""><?php echo $name_err; ?></p>
+                <p class="input_error"><?php echo $name_err; ?></p>
             </div>
             <div class="form-group">
                 <label>Animal</label>
                 <input type="text" name="animal" class="form-control <?php echo (!empty($animal_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $animal; ?>">
-                <p class=""><?php echo $animal_err; ?></p>
+                <p class="input_error"><?php echo $animal_err; ?></p>
             </div>
             <div class="form-group">
                 <label>Color</label>
                 <input type="text" name="color" class="form-control <?php echo (!empty($color_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $color; ?>">
-                <p class=""><?php echo $color_err; ?></p>
+                <p class="input_error"><?php echo $color_err; ?></p>
             </div>
             <div class="form-group">
                 <label>Chip ID (optional)</label>
                 <input type="text" name="chipid" class="form-control <?php echo (!empty($chipid_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $chipid; ?>">
-                <p class=""><?php echo $color_err; ?></p>
+                <p class="input_error"><?php echo $color_err; ?></p>
             </div>
             <div class="form-group">
                 <label>New Picture</label>
                 <input type="file" name="filename" class="form-control <?php echo (!empty($filename_err)) ? 'is-invalid' : ''; ?>">
-                <p class=""><?php echo $filename_err; ?></p>
+                <p class="input_error"><?php echo $filename_err; ?></p>
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Update" name="submit">

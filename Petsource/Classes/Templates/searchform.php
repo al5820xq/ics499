@@ -11,7 +11,7 @@
     <div class="form-group">
         <label>Pet ID</label>
         <input type="text" name="petid" class="form-control" value="<?php echo $petid; ?>">
-        <p><?php echo $petid_err; ?></p>
+        <p class="input_error"><?php echo $petid_err; ?></p>
     </div>
     <div class="form-group">
         <input type="submit" class="btn btn-primary" value="Search">

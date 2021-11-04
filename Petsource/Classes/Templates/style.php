@@ -19,4 +19,10 @@
 	text-decoration: none;
 	color: rgb(255, 0, 140);
 }
+	.input_error{
+		color: red;
+		font-size: smaller;
+		margin-top: 0px;
+		padding-top: 0px;
+	}
 </style>

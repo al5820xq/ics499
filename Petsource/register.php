@@ -156,57 +156,57 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="form-group">
                 <label>Username</label>
                 <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
-                <p class=""><?php echo $username_err; ?></p>
+                <p class="input_error"><?php echo $username_err; ?></p>
             </div>
             <div class="form-group">
                 <label>First Name</label>
                 <input type="text" name="firstname" class="form-control <?php echo (!empty($firstname_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $firstname; ?>">
-                <p class=""><?php echo $firstname_err; ?></p>
+                <p class="input_error"><?php echo $firstname_err; ?></p>
             </div>
             <div class="form-group">
                 <label>Last Name</label>
                 <input type="text" name="lastname" class="form-control <?php echo (!empty($lastname_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $lastname; ?>">
-                <p class=""><?php echo $lastname_err; ?></p>
+                <p class="input_error"><?php echo $lastname_err; ?></p>
             </div>
             <div class="form-group">
                 <label>Email</label>
                 <input type="text" name="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
-                <p class=""><?php echo $email_err; ?></p>
+                <p class="input_error"><?php echo $email_err; ?></p>
             </div>
             <div class="form-group">
                 <label>Street Address</label>
                 <input type="text" name="address" class="form-control <?php echo (!empty($address_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $address; ?>">
-                <p class=""><?php echo $address_err; ?></p>
+                <p class="input_error"><?php echo $address_err; ?></p>
             </div>
             <div class="form-group">
                 <label>City</label>
                 <input type="text" name="city" class="form-control <?php echo (!empty($city_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $city; ?>">
-                <p class=""><?php echo $city_err; ?></p>
+                <p class="input_error"><?php echo $city_err; ?></p>
             </div>
             <div class="form-group">
                 <label>Zip Code</label>
                 <input type="text" name="zipcode" class="form-control <?php echo (!empty($zipcode_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $zipcode; ?>">
-                <p class=""><?php echo $zipcode_err; ?></p>
+                <p class="input_error"><?php echo $zipcode_err; ?></p>
             </div>
             <div class="form-group">
                 <label>State</label>
                 <input type="text" name="state" class="form-control <?php echo (!empty($state_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $state; ?>">
-                <p class=""><?php echo $state_err; ?></p>
+                <p class="input_error"><?php echo $state_err; ?></p>
             </div>
             <div class="form-group">
                 <label>Phone Number</label>
                 <input type="text" name="phonenumber" class="form-control <?php echo (!empty($phonenumber_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $phonenumber; ?>">
-                <p class=""><?php echo $phonenumber_err; ?></p>
+                <p class="input_error"><?php echo $phonenumber_err; ?></p>
             </div>
             <div class="form-group">
                 <label>Password</label>
                 <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
-                <p class=""><?php echo $password_err; ?></p>
+                <p class="input_error"><?php echo $password_err; ?></p>
             </div>
             <div class="form-group">
                 <label>Confirm Password</label>
                 <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
-                <p class=""><?php echo $confirm_password_err; ?></p>
+                <p class="input_error"><?php echo $confirm_password_err; ?></p>
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Submit">
