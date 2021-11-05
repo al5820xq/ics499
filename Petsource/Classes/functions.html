@@ -1,0 +1,15 @@
+<script>
+    function validateFirstName(input, inputError) {
+        if (input == "") {
+            return inputError;
+        }
+        if (input.trim().length < 2){
+            inputError = "First name must have at least 2 characters.";
+        } else {
+            inputError = "";
+        }
+        return inputError;
+    }
+
+    
+</script>

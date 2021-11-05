@@ -141,7 +141,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <?php
     include("Classes/Templates/header.html");
     ?>
-
+    <?php
+    include("Classes/functions.html");
+    ?>
+    <script type="text/javascript">
+        function validateInputs() {
+            document.getElementById('firstname_err').textContent = validateFirstName(document.getElementById('firstname').value, 
+                                                                                document.getElementById('firstname_err').textContent);
+        }
+        setInterval(validateInputs, 5);
+    </script>
 
         <div class="small-container2">
             <div class="col-1"> 
@@ -155,13 +164,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group">
                 <label>Username</label>
-                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+                <input type="text" name="username" id="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
                 <p class="input_error"><?php echo $username_err; ?></p>
             </div>
             <div class="form-group">
                 <label>First Name</label>
-                <input type="text" name="firstname" class="form-control <?php echo (!empty($firstname_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $firstname; ?>">
-                <p class="input_error"><?php echo $firstname_err; ?></p>
+                <input type="text" name="firstname" id="firstname" class="form-control <?php echo (!empty($firstname_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $firstname; ?>">
+                <p id="firstname_err" class="input_error"><?php echo $firstname_err; ?></p>
             </div>
             <div class="form-group">
                 <label>Last Name</label>
