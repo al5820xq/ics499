@@ -10,6 +10,112 @@
         }
         return inputError;
     }
+    
+     // validate last name
+    function validateLastName(input, inputError) {
+        if (input == "") {
+            return inputError;
+        }
+        if (input.trim().length < 2) {
+            inputError = "Last name must have at least 2 characters.";
+        } else {
+            inputError = "";
+        }
+        return inputError;
+    }
+
+     //validate email
+    function validateEmail(input, inputError) {
+        if (input == "") {
+            return inputError;
+        }
+        if (input.trim().length < 3 || input.includes("@") || input.includes(".")) {
+            inputError = "Please enter a valid email address.";
+        } else {
+            inputError = "";
+        }
+        return inputError;
+    }
+
+    // validate address
+    function validateAddress(input, inputError) {
+        if (input == "") {
+            return inputError;
+        }
+        if (input.trim().length < 6) {
+            inputError = "Address must have at least 6 characters.";
+        } else {
+            inputError = "";
+        }
+        return inputError;
+    }
+
+    // validate city
+    function validateCity(input, inputError) {
+        if (input == "") {
+            return inputError;
+        }
+        if (input.trim().length < 3) {
+            inputError = "City must have at least 3 characters.";
+        } else {
+            inputError = "";
+        }
+        return inputError;
+    }
+
+
+    // validate Zipcode
+    function validateZipcode(input, inputError) {
+        if (input == "") {
+            return inputError;
+        }
+        if (input.trim().length.toString() != 5) {
+            inputError = "Zipcode must have 5 characters.";
+        } else {
+            inputError = "";
+        }
+        return inputError;
+    }
+
+    // validate State
+    function validateState(input, inputError) {
+        if (input == "") {
+            return inputError;
+        }
+        if (input.trim().length != 2) {
+            inputError = "State must have 2 characters.";
+        } else {
+            inputError = "";
+        }
+        return inputError;
+    }
+
+    // validate phonenumber
+    function validatePhoneNumber(input, inputError) {
+        if (input == "") {
+            return inputError;
+        }
+        if (input.trim().length.replace("-", "") < 10) {
+            inputError = "Phone number must have 10 or 11 digits.";
+        } else {
+            inputError = "";
+        }
+        return inputError;
+    }
+
+    // validate Password
+    function validatePassword(input, inputError) {
+        if (input == "") {
+            return inputError;
+        }
+        if (input.trim().length < 6) {
+            inputError = "Password must have atleast 6 characters.";
+        } else {
+            inputError = "";
+        }
+        return inputError;
+    }
+
 
     
 </script>
