@@ -31,6 +31,9 @@ class Profile {
             $pet->displayPet();
             $petIndex++;
         }
+        if ($petIndex == 0) {
+            echo'<p>No pets</p>';
+        }
     }
 
     function isUser() {
@@ -38,7 +41,7 @@ class Profile {
     }
 
     function registerPet($name, $animal, $color, $chipID, $media) {
-        $pet = new Pet($this->petOwner->getUserID(), NULL, $name, $chipID, $media, $color, $animal);
+        $pet = new Pet($this->petOwner->getUserID(), NULL, $name, $chipID, $media, $color, $animal, NULL);
         return DBController::insertPet($pet);
     }
 
@@ -59,7 +62,7 @@ class Profile {
     }
 
     function updatePet($petID, $name, $animal, $color, $chipID, $media) {
-        $pet = new Pet($this->petOwner->getUserID(), $petID, $name, $chipID, $media, $color, $animal);
+        $pet = new Pet($this->petOwner->getUserID(), $petID, $name, $chipID, $media, $color, $animal, NULL);
         return DBController::updatePet($pet, $this->petOwner->getUsername(), $this->petOwner->getPassword());
     }
 

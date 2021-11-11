@@ -9,8 +9,8 @@ class Guest {
     function __construct() {
     }
 
-    function searchPet($petID) {
-        $this->pet = DBController::getPet($petID);
+    function searchPet($searchID) {
+        $this->pet = DBController::getPet($searchID);
         if (is_null($this->pet)) {
             return false;
         } else {

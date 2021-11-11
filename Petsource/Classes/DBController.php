@@ -131,15 +131,16 @@ class DBController {
         return $output;
     }
 
-    static function getPet($petID) {
+    static function getPet($searchID) {
         $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT) 
         or die('Could not connect to MySQL '. mysqli_connect_error());
-        $query = "SElECT * FROM pets WHERE pet_id=$petID";
+        $query = "SElECT * FROM pets WHERE search_id='$searchID'";
 
         $response = @mysqli_query($dbc, $query);
 
         if($response) {
             $row = mysqli_fetch_array($response);
+            $petID = @$row['pet_id'];
             $userID = @$row['user_id'];
             $name = @$row['name'];
             $chipID = @$row['chip_id'];
@@ -149,7 +150,7 @@ class DBController {
             if (is_null($userID)) {
                 $output = NULL;
             } else {
-                $output = new Pet($userID, $petID, $name, $chipID, $media, $color, $animal);
+                $output = new Pet($userID, $petID, $name, $chipID, $media, $color, $animal, $searchID);
             }
             
         } else {
@@ -179,7 +180,8 @@ class DBController {
                 $media = @$row['media'];
                 $color = @$row['color'];
                 $animal = @$row['animal'];
-                $pet = new Pet($userID, $petID, $name, $chipID, $media, $color, $animal);
+                $searchID = @$row['search_id'];
+                $pet = new Pet($userID, $petID, $name, $chipID, $media, $color, $animal, $searchID);
                 $output[] = $pet;
             }  
         } else {
@@ -279,15 +281,16 @@ class DBController {
         $userID = $animal->getUserID();
         $chipID = $animal->getChipID();
         $media = $animal->getMedia();
+        $searchID = DBController::newPetID();
         if (is_null($media)) {
             $media = "NULL";
         } else {
             $media = "'$media'";
         }
-        $insertQuery = "INSERT INTO pets (pet_id, user_id, name, animal, color, chip_id, media) 
-        VALUES (NULL, ?, ?, ?, ?, ?, $media)";
+        $insertQuery = "INSERT INTO pets (pet_id, user_id, name, animal, color, chip_id, media, search_id) 
+        VALUES (NULL, ?, ?, ?, ?, ?, $media, ?)";
         $stmt = mysqli_prepare($dbc, $insertQuery);
-        mysqli_stmt_bind_param($stmt, "issss", $userID, $name, $species, $color, $chipID);
+        mysqli_stmt_bind_param($stmt, "isssss", $userID, $name, $species, $color, $chipID, $searchID);
         mysqli_stmt_execute($stmt);
         $affected_rows = mysqli_stmt_affected_rows($stmt);
         if($affected_rows == 1){
@@ -317,7 +320,7 @@ class DBController {
         mysqli_stmt_execute($stmt);
         $affected_rows = mysqli_stmt_affected_rows($stmt);
         if($affected_rows == 1){
-            echo 'Message Entered';
+            //echo 'Message Entered';
             mysqli_stmt_close($stmt);
             $output = true;
         } else {
@@ -392,7 +395,7 @@ class DBController {
             echo mysqli_error($dbc);
         }
         if($validation1 && $validation2) {
-            if (is_null($media)){
+            if (is_null($media) || $media == ""){
                 $media = "NULL";
             } else {
                 $media = "'$media'";
@@ -503,6 +506,46 @@ class DBController {
             echo mysqli_error($dbc);
         }
         mysqli_close($dbc);
+        return $output;
+    }
+
+    static function isPet($searchID) {
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT) 
+        or die('Could not connect to MySQL '. mysqli_connect_error());
+
+        if ($searchID == "" || is_null($searchID)) {
+            mysqli_close($dbc);
+            return false;
+        }
+
+        $query = "SElECT pet_id FROM pets WHERE BINARY search_id='$searchID'";
+
+        $response = @mysqli_query($dbc, $query);
+
+        if($response) {
+            $row = mysqli_fetch_array($response);
+            $petID = @$row['pet_id'];
+            
+            if (!is_null($petID)) {
+                $output = true;
+            } else {
+                $output = false;
+            }
+        } else {
+            echo "couldnt issue database query";
+            echo mysqli_error($dbc);
+            $output = false;
+        }
+
+        mysqli_close($dbc);
+        return $output;
+    }
+
+    static function newPetID() {
+        $output = "";
+        do {
+            $output = generateID();
+        } while (DBController::isPet($output));
         return $output;
     }
 

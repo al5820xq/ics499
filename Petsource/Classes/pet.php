@@ -8,8 +8,9 @@ class Pet {
     private $userID;
     private $chipID;
     private $media;
+    private $searchID;
 
-    function __construct($userID, $petID, $name, $chipID, $media, $color, $animal) {
+    function __construct($userID, $petID, $name, $chipID, $media, $color, $animal, $searchID) {
         $this->animal = $animal;
         $this->name = $name;
         $this->color = $color;
@@ -17,6 +18,7 @@ class Pet {
         $this->userID = $userID;
         $this->chipID = $chipID;
         $this->media = $media;
+        $this->searchID = $searchID;
     }
 
     function getAnimal() {
@@ -47,6 +49,10 @@ class Pet {
         return $this->media;
     }
 
+    function getSearchID() {
+        return $this->searchID;
+    }
+
     function imgsrc() {
         $output = '';
         if (is_null($this->media)) {
@@ -58,7 +64,7 @@ class Pet {
     }
 
     function qrsrc() {
-        $output = "https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=https://www.petsource.app/search.php?petid=".$this->getPetID()."&choe=UTF-8";
+        $output = "https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=https://www.petsource.app/search.php?petid=".$this->getSearchID()."&choe=UTF-8";
         return $output;
     }
 

@@ -84,7 +84,7 @@ if ($profile->isUser() && isset($_GET["petid"])) {
                     echo '<h1>Error updating pet</h1>';
                 }
             } else {
-                if ($profile->updatePet($pet->getPetID(), $name, $animal, $color, $chipid, addslashes($pet->getMedia()))) {
+                if ($profile->updatePet($pet->getPetID(), $name, $animal, $color, $chipid, addslashes($pet->getMedia()) )) {
                     header("Location: welcome.php");
                 } else {
                     echo '<h1>Error updating pet</h1>';
