@@ -164,6 +164,39 @@ class DBController {
 
     }
 
+    static function getPetByID($petID) {
+        $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT) 
+        or die('Could not connect to MySQL '. mysqli_connect_error());
+        $query = "SElECT * FROM pets WHERE pet_id='$petID'";
+
+        $response = @mysqli_query($dbc, $query);
+
+        if($response) {
+            $row = mysqli_fetch_array($response);
+            $searchID = @$row['search_id'];
+            $userID = @$row['user_id'];
+            $name = @$row['name'];
+            $chipID = @$row['chip_id'];
+            $media = @$row['media'];
+            $color = @$row['color'];
+            $animal = @$row['animal'];
+            if (is_null($userID)) {
+                $output = NULL;
+            } else {
+                $output = new Pet($userID, $petID, $name, $chipID, $media, $color, $animal, $searchID);
+            }
+            
+        } else {
+            echo "couldnt issue database query";
+            echo mysqli_error($dbc);
+            $output = NULL;
+        }
+        
+        mysqli_close($dbc);
+        return $output;
+
+    }
+
     static function getPets($userID) {
         $output = array();
         $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT) 

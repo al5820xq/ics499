@@ -43,7 +43,7 @@ include("Classes/Templates/header.html");
 		$display = 0;
 		while ($display < 4) {
 			$petID = rand(1, $maxID);
-			$pet = DBController::getPet($petID);
+			$pet = DBController::getPetByID($petID);
 			if (!is_null($pet)) {
 				$display++;
 				$name = $pet->getName();
