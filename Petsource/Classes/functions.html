@@ -1,4 +1,17 @@
 <script>
+    // Validate username
+    function validateUsername(input, inputError) {
+        if (input == "") {
+            return inputError;
+        }
+        if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(str)){
+            inputError = "Username can only contain letters, numbers, and underscores.";
+        } else {
+            inputError = "";
+        }
+        return inputError;
+    }
+
     // Validate firstname
     function validateFirstName(input, inputError) {
         if (input == "") {
@@ -70,7 +83,7 @@
         if (input == "") {
             return inputError;
         }
-        if (input.trim().length.toString() !== 5) {
+        if (input.trim().length !== 5) {
             inputError = "Zipcode must have 5 characters.";
         } else {
             inputError = "";
@@ -96,7 +109,7 @@
         if (input == "") {
             return inputError;
         }
-        if (input.trim().length.replace("-", "") < 10) {
+        if (input.trim().replace("-", "").length < 10) {
             inputError = "Phone number must have 10 or 11 digits.";
         } else {
             inputError = "";
@@ -112,22 +125,23 @@
         if (input.trim().length < 6) {
             inputError = "Password must have at least 6 characters.";
         } else {
-            return input
+            inputError = "";
         }
         return inputError;
     }
 
     // validate confirm password
     function validateConfirmPassword(input, inputError, input2, inputError2) {
-        if (input == "") {
-            return inputError;
+        if (input2 == "") {
+            return inputError2;
         } else {
-                inputError = "";
             if (inputError == "" && input2 !== input) {
-                inputError = "Password did not match.";
+                inputError2 = "Password did not match.";
+            } else {
+                inputError2 = "";
             }
         }
-        return inputError;
+        return inputError2;
     }
     
 </script>

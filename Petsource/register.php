@@ -90,7 +90,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     // Validate phonenumber
     if(empty(trim($_POST["phonenumber"]))){
-        $phonenumber_err = "Please enter a password.";     
+        $phonenumber_err = "Please enter a phone number.";     
     } elseif(strlen(str_replace("-","",trim($_POST["phonenumber"]))) < 10){
         $phonenumber_err = "Phone number must have 10 or 11 digits.";
     } else{
@@ -155,8 +155,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             document.getElementById('email_err').textContent = validateEmail(document.getElementById('email').value, 
                                                                                 document.getElementById('email_err').textContent);
 
-            document.getElementById('username_err').textContent = validateUsername(document.getElementById('username').value, 
-                                                                                document.getElementById('username_err').textContent);  
+            //document.getElementById('username_err').textContent = validateUsername(document.getElementById('username').value, 
+            //                                                                    document.getElementById('username_err').textContent);  
 
             document.getElementById('address_err').textContent = validateAddress(document.getElementById('address').value, 
                                                                                 document.getElementById('address_err').textContent);
@@ -167,7 +167,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             document.getElementById('zipcode_err').textContent = validateZipcode(document.getElementById('zipcode').value, 
                                                                                 document.getElementById('zipcode_err').textContent);
 
-            document.getElementById('state_err').textContent = validateState(document.getElementById('zipcode').value, 
+            document.getElementById('state_err').textContent = validateState(document.getElementById('state').value, 
                                                                                 document.getElementById('state_err').textContent);
 
             document.getElementById('phonenumber_err').textContent = validatePhoneNumber(document.getElementById('phonenumber').value, 
@@ -180,7 +180,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                                                                 document.getElementById('password_err').textContent,
                                                                                 document.getElementById('confirm_password').value, 
                                                                                 document.getElementById('confirm_password_err').textContent);                                                                       
-            }
+        }
         setInterval(validateInputs, 5);
 
         
