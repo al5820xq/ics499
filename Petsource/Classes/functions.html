@@ -31,7 +31,7 @@
         if (input == "") {
             return inputError;
         }
-        if (input.trim().length < 3 || input.includes("@") || input.includes(".")) {
+        if (input.trim().length < 3 || !input.includes("@") || !input.includes(".")) {
             inputError = "Please enter a valid email address.";
         } else {
             inputError = "";
@@ -70,7 +70,7 @@
         if (input == "") {
             return inputError;
         }
-        if (input.trim().length.toString() != 5) {
+        if (input.trim().length.toString() !== 5) {
             inputError = "Zipcode must have 5 characters.";
         } else {
             inputError = "";
@@ -83,7 +83,7 @@
         if (input == "") {
             return inputError;
         }
-        if (input.trim().length != 2) {
+        if (input.trim().length !== 2) {
             inputError = "State must have 2 characters.";
         } else {
             inputError = "";
@@ -110,7 +110,7 @@
             return inputError;
         }
         if (input.trim().length < 6) {
-            inputError = "Password must have atleast 6 characters.";
+            inputError = "Password must have at least 6 characters.";
         } else {
             return input
         }
@@ -123,7 +123,7 @@
             return inputError;
         } else {
                 inputError = "";
-            if (inputError2 == "" && input2 != input) {
+            if (inputError == "" && input2 !== input) {
                 inputError = "Password did not match.";
             }
         }
