@@ -148,8 +148,40 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         function validateInputs() {
             document.getElementById('firstname_err').textContent = validateFirstName(document.getElementById('firstname').value, 
                                                                                 document.getElementById('firstname_err').textContent);
-        }
+
+            document.getElementById('lastname_err').textContent = validateLastName(document.getElementById('lastname').value, 
+                                                                                document.getElementById('lastname_err').textContent);
+
+            document.getElementById('email_err').textContent = validateEmail(document.getElementById('email').value, 
+                                                                                document.getElementById('email_err').textContent);
+
+            document.getElementById('username_err').textContent = validateUsername(document.getElementById('username').value, 
+                                                                                document.getElementById('username_err').textContent);  
+
+            document.getElementById('address_err').textContent = validateAddress(document.getElementById('address').value, 
+                                                                                document.getElementById('address_err').textContent);
+
+            document.getElementById('city_err').textContent = validateCity(document.getElementById('city').value, 
+                                                                                document.getElementById('city_err').textContent);
+
+            document.getElementById('zipcode_err').textContent = validateZipcode(document.getElementById('zipcode').value, 
+                                                                                document.getElementById('zipcode_err').textContent);
+
+            document.getElementById('state_err').textContent = validateState(document.getElementById('zipcode').value, 
+                                                                                document.getElementById('state_err').textContent);
+
+            document.getElementById('phonenumber_err').textContent = validatePhoneNumber(document.getElementById('phonenumber').value, 
+                                                                                document.getElementById('phonenumber_err').textContent);       
+                                                                                
+            document.getElementById('password_err').textContent = validatePassword(document.getElementById('password').value, 
+                                                                                document.getElementById('password_err').textContent);   
+
+            document.getElementById('confirm_password_err').textContent = validateConfirmPassword(document.getElementById('confirm_password').value, 
+                                                                                document.getElementById('confirm_password_err').textContent);                                                                       
+            }
         setInterval(validateInputs, 5);
+
+        
     </script>
 
         <div class="small-container2">
