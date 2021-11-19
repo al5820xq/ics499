@@ -1,6 +1,13 @@
 <?php
 include_once("Address.php");
 
+/**
+ * PetOwner is a class object that represents a pet owner. This class contains a constructor
+ * and accessor methods, along with methods that display the PetOwner in a more usable 
+ * format.
+ * 
+ * @author Vincent Peterson
+ */
 class PetOwner {
     private $username;
     private $password;
@@ -46,6 +53,11 @@ class PetOwner {
         return $this->email;
     }
 
+    /**
+     * Returns The phone number in text format.
+     * 
+     * @return string example "555-555-5555"
+     */
     function getPhone() {
         $number = str_replace("-","",$this->phone);
         if (strlen($number) == 10) {
@@ -60,6 +72,11 @@ class PetOwner {
         return $this->address;
     }
 
+    /**
+     * Displays the PetOwner object as html in a string.
+     * 
+     * @return string containing html code
+     */
     function toString() {
         echo '<table align="center" cellspacing="5" cellpadding="8">';
         echo '<tr><td align="left"><b>Id: </b></td>';

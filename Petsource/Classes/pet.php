@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * Pet is a class object that represents a pet. This class contains a constructor
+ * and accessor methods, along with methods that display the Pet object in a more usable 
+ * format.
+ * 
+ * @author Vincent Peterson
+ */
 class Pet {
     private $animal;
     private $name;
@@ -53,6 +59,12 @@ class Pet {
         return $this->searchID;
     }
 
+    /**
+     * Returns the source string of the pet's image if one exists, otherwise returns the source 
+     * string for the default pet picture.
+     * 
+     * @return string the source image string.
+     */
     function imgsrc() {
         $output = '';
         if (is_null($this->media)) {
@@ -63,15 +75,28 @@ class Pet {
         return $output;
     }
 
+    /**
+     * Returns the source string of the pet's QR code.
+     * 
+     * @return string the source QR code string.
+     */
     function qrsrc() {
         $output = "https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=https://www.petsource.app/search.php?petid=".$this->getSearchID()."&choe=UTF-8";
         return $output;
     }
 
+    /**
+     * Displays the Pet object as html format.
+     */
     function displayPet() {
         include("Classes/Templates/petprofile.php");
     }
 
+    /**
+     * Displays the Pet object as html in a string.
+     * 
+     * @return string containing html code
+     */
     function toString() {
         $output = "";
         $output .= "<hr>";

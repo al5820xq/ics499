@@ -1,6 +1,13 @@
 <?php
-
+/**
+ * Address is a class object that represents an address. This class contains a constructor
+ * and accessor methods, along with methods that display the address in a more usable 
+ * format.
+ * 
+ * @author Vincent Peterson
+ */
 class Address {
+    
     private $streetAddress;
     private $zipcode;
     private $city;
@@ -29,6 +36,11 @@ class Address {
         return $this->state;
     }
 
+    /**
+     * Returns a string containing a link to search the Address object on google maps.
+     * 
+     * @return string 
+     */
     function getLink() {
         $output = 'https://www.google.com/maps/place/';
         for($index = 0; $index < strlen($this->streetAddress); $index++) {
@@ -41,10 +53,15 @@ class Address {
                 $city = substr($this->city,0,$index) . '%20' . substr($this->city,$index + 1,strlen($this->city) - $index - 1);
             }
         }
-        $output = $output . $this->streetAddress . ',+' . $this->city . ',+' . $this->state . '+' . $this->zipcode . '/';
+        $output = $output . $this->streetAddress . ',+' . $city . ',+' . $this->state . '+' . $this->zipcode . '/';
         return $output;
     }
 
+    /**
+     * Returns a string containing the Address object in a more readable format.
+     * 
+     * @return string 
+     */
     function toString() {
         return str_replace("+"," ",$this->streetAddress) . ' ' . $this->city . ' ' . $this->state . ' ' . $this->zipcode;
     }

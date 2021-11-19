@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Message is a class object that represents a message. This class contains a constructor
+ * and accessor methods.
+ * 
+ * @author Vincent Peterson
+ */
 class Message {
     private $messageID;
     private $userID;
@@ -27,10 +32,6 @@ class Message {
 
     function getMessage() {
         return $this->message;
-    }
-
-    function displayMessage() {
-        
     }
 }
 
