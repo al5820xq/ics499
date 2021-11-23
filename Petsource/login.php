@@ -50,7 +50,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 header("location: welcome.php");
         } else{
                 $login_err = "Invalid username or password.";
-                echo "Oops! Something went wrong. Please try again later.";
+                //echo "Oops! Something went wrong. Please try again later.";
         }
     }
 }
@@ -73,7 +73,7 @@ include("Classes/Templates/header.html");
     <div class="small-container2">
         <?php 
         if(!empty($login_err)){
-            echo '<div class="alert alert-danger">' . $login_err . '</div>';
+            echo '<div class="input_error">' . $login_err . '</div>';
         }        
         ?>
 

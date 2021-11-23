@@ -48,6 +48,7 @@ class Address {
                 $this->streetAddress[$index] = '+';
             }
         }
+        $city = $this->city;
         for($index = 0; $index < strlen($this->city); $index++) {
             if($this->city[$index] == ' ') {
                 $city = substr($this->city,0,$index) . '%20' . substr($this->city,$index + 1,strlen($this->city) - $index - 1);

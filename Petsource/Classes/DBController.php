@@ -49,7 +49,7 @@ class DBController {
             mysqli_close($dbc);
             return false;
         }
-        $query = "SElECT user_id FROM user WHERE username='$username' AND password='$password'";
+        $query = "SElECT user_id FROM user WHERE BINARY username='$username' AND BINARY password='$password'";
         $response = @mysqli_query($dbc, $query);
         if($response) {
             $row = mysqli_fetch_array($response);
@@ -82,7 +82,7 @@ class DBController {
             mysqli_close($dbc);
             return false;
         }
-        $query = "SElECT user_id FROM user WHERE username='$username'";
+        $query = "SElECT user_id FROM user WHERE BINARY username='$username'";
         $response = @mysqli_query($dbc, $query);
         if($response) {
             $row = mysqli_fetch_array($response);
@@ -114,7 +114,7 @@ class DBController {
         $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT) 
         or die('Could not connect to MySQL '. mysqli_connect_error());
         $query = "SElECT user_id, firstname, lastname, username, password, email, 
-        phone, address, zipcode, city, state FROM user WHERE username='$username' AND password='$password'";
+        phone, address, zipcode, city, state FROM user WHERE BINARY username='$username' AND BINARY password='$password'";
         $response = @mysqli_query($dbc, $query);
         if($response) {
             $row = mysqli_fetch_array($response);
@@ -147,7 +147,7 @@ class DBController {
     static function getPet($searchID) {
         $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT) 
         or die('Could not connect to MySQL '. mysqli_connect_error());
-        $query = "SElECT * FROM pets WHERE search_id='$searchID'";
+        $query = "SElECT * FROM pets WHERE BINARY search_id='$searchID'";
 
         $response = @mysqli_query($dbc, $query);
 
@@ -466,7 +466,7 @@ class DBController {
         $petID = $pet->getPetID();
         $validation1 = DBController::isUser($username, $password);
         $validation2 = false;
-        $query1 = "SElECT user_id FROM user WHERE username='$username' AND password='$password'";
+        $query1 = "SElECT user_id FROM user WHERE BINARY username='$username' AND BINARY password='$password'";
         $response = @mysqli_query($dbc, $query1);
         if($response) {
             $row = mysqli_fetch_array($response);
@@ -522,7 +522,7 @@ class DBController {
         or die('Could not connect to MySQL '. mysqli_connect_error());
         $validation1 = DBController::isUser($username, $password);
         $validation2 = false;
-        $query1 = "SElECT user_id FROM user WHERE username='$username' AND password='$password'";
+        $query1 = "SElECT user_id FROM user WHERE BINARY username='$username' AND BINARY password='$password'";
         $response = @mysqli_query($dbc, $query1);
         if($response) {
             $row = mysqli_fetch_array($response);
