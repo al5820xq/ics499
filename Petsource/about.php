@@ -32,30 +32,6 @@ include("Classes/Templates/header.html");
 		</div>
 	</div>
 </div>
-
-<!-------- Featured Products --------->
-<div class="small-container">
-	<h2 class="title">Featured Pets</h2>
-	<div class="row">
-		<?php
-		include("Classes/DBController.php");
-		$maxID = DBController::maxPetID();
-		$display = 0;
-		while ($display < 4) {
-			$petID = rand(1, $maxID);
-			$pet = DBController::getPetByID($petID);
-			if (!is_null($pet)) {
-				$display++;
-				$name = $pet->getName();
-				$picture = $pet->imgsrc();
-				include("Classes/Templates/featurepet.php");
-			}
-		}
-		?>
-	</div>
-
-
-</div>
 <?php
 include("Classes/Templates/footer.html");
 ?>
