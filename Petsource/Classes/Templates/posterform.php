@@ -15,7 +15,7 @@
 <div class="small-container2">
     <h1>Lost <?php echo $animal; ?></h1>
         <div class="center">
-            <img src="<?php echo $pet->imgsrc(); ?>">
+            <img src="<?php echo $pet->imgsrc(); ?>" height="60%">
         </div>
         
     <div class="col-2">
