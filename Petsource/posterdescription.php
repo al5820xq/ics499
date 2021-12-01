@@ -9,7 +9,6 @@ require_once('dompdf/autoload.inc.php');
 use Dompdf\Options;
 session_start();
 
-// Store data in session variables
 $username = $_SESSION["username"];                            
 $password = $_SESSION["password"];
 $profile = unserialize($_SESSION["profile"]);
@@ -25,8 +24,6 @@ if (DBController::isUser($username, $password) && isset($_GET["petid"])) {
         $location = $profile->getPetOwner()->getAddress()->getCity() . ", " . $profile->getPetOwner()->getAddress()->getState();
         $phone = $profile->getPetOwner()->getPhone();
         $email = $profile->getPetOwner()->getEmail();
-        
-        //include("Classes/Templates/lostpet.php");
         include("Classes/Templates/posterform.php");
         include("Classes/Templates/footer.html");
     }

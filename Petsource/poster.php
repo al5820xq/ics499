@@ -27,20 +27,7 @@ if (DBController::isUser($username, $password) && isset($_GET["petid"])) {
         ob_start();
         include("Classes/Templates/lostpet.php");
         $output = ob_get_clean();
-        //echo $output;
-
-        //use Dompdf\Dompdf;
-        /* $options = new Options();
-        $options->set('isRemoteEnabled', TRUE);
-        $contxt = stream_context_create([ 
-            'ssl' => [ 
-                'verify_peer' => FALSE, 
-                'verify_peer_name' => FALSE,
-                'allow_self_signed'=> TRUE
-            ] 
-        ]); */
         $document = new Dompdf();
-        //$document->setHttpContext($contxt);
         $document->loadHtml($output);
         $document->setPaper('A4', 'portrait');
         $document->render();

@@ -63,11 +63,6 @@ if ($profile->isUser() && isset($_GET["petid"])) {
             if ($ext) {
                 $filename = file_get_contents($_FILES['filename']['tmp_name']);
                 $filename = addslashes($filename);
-                //DBController::upimage($tmpname);
-            /* $n = "image.$ext";
-            move_uploaded_file($_FILES['filename']['tmp_name'], $n);
-            echo "Uploaded image '$name' as '$n':<br>";
-            echo "<img src='$n'>"; */
             } else {
                 $filename_err = "'$imgname' is not an accepted image file";
             }
